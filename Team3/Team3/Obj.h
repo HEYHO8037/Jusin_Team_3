@@ -17,6 +17,7 @@ public:
 	const RECT&		Get_Rect(void) const { return m_tRect; }
 
 	void		Set_Dir(DIRECTION eDir) { m_eDir = eDir; }
+	void		Set_Angle(float fAngle) { m_fAngle = fAngle; }
 
 	virtual		void	Initialize(void)	PURE;
 	virtual		int		Update(void)		PURE;
@@ -33,11 +34,9 @@ protected:
 	D3DXMATRIX matRotZ;
 	D3DXMATRIX matTrans;
 
-	//D3DXVECTOR3 m_vArray[4];
-	//D3DXVECTOR3 m_vArrayRender[4];
-
 	bool		m_bDead;
 
-	float		fAngle;
+	float		m_fAngle;
+	float		m_fSpeed;
 };
 

@@ -79,6 +79,9 @@
     <ClCompile Include="Stage.cpp">
       <Filter>95. Scene\05. Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Player_Ho.cpp">
+      <Filter>01. Obj\00. Player\02. Player_HO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>95. Scene\05. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Ho.h">
+      <Filter>01. Obj\00. Player\02. Player_HO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +294,9 @@
     </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{286c2065-46d5-49c3-b47c-87b0770ad276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\00. Player\02. Player_HO">
+      <UniqueIdentifier>{10fbe40f-eb19-42c1-899c-607f181803a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
