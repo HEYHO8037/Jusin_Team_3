@@ -13,6 +13,7 @@ public:
 	virtual void LateUpdate(void)	override;
 	virtual void Render(HDC hDC)	override;
 	virtual void Release(void)		override;
+	virtual void    Set_Damage(void) override;
 
 private:
 	D3DXVECTOR3 m_vBody[8];

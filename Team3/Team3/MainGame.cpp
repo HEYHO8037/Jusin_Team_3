@@ -15,7 +15,9 @@ CMainGame::~CMainGame()
 void CMainGame::Initialize(void)
 {
 	m_hDC = GetDC(g_hWnd);
-	CSceneMgr::Get_Instance()->Scene_Change(GAME_HAEHO);
+
+	//CSceneMgr::Get_Instance()->Scene_Change(GAME_HAEHO);
+	CSceneMgr::Get_Instance()->Scene_Change(GAME_SEOKGYUN);
 }
 
 void CMainGame::Update(void)

@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Bullet_HO.h" />
+    <ClInclude Include="Bullet_Seok.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enum.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="LineMgr.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster_HO.h" />
+    <ClInclude Include="Monster_SEOK.h" />
     <ClInclude Include="MyMenu.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
@@ -198,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet_HO.cpp" />
+    <ClCompile Include="Bullet_Seok.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Game_HAEHO.cpp" />
     <ClCompile Include="Game_JUN.cpp" />
@@ -209,6 +212,7 @@
     <ClCompile Include="LineMgr.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster_HO.cpp" />
+    <ClCompile Include="Monster_SEOK.cpp" />
     <ClCompile Include="MyMenu.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />

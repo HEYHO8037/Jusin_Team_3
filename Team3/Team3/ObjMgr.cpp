@@ -88,12 +88,10 @@ void CObjMgr::Late_Update(void)
 			if (m_ObjList[i].empty())
 				break;
 
-			//RENDERID eRender = iter->Get_RenderID();
-			//m_RenderSort[eRender].push_back(iter);
 		}
 	}
 
-	//CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_BULLET], m_ObjList[OBJ_MONSTER]);
 	//CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
 }
 
