@@ -10,11 +10,11 @@ public:
 	virtual ~CTile();
 
 public:
-	const int& Get_DrawID(void) { return m_iDrawID; }
 	const int& Get_Option(void) { return m_iOption; }
 public:
 	void		Set_DrawID(int _iDrawID) { m_iDrawID = _iDrawID; }
 	void		Set_Option(int _iOption) { m_iOption = _iOption; }
+	void		Set_TMap(void) { m_bTMap = true; }
 
 public:
 	virtual void Initialize(void) override;
@@ -24,8 +24,6 @@ public:
 	virtual void Release(void) override;
 	virtual void    Set_Damage(void) override;
 private:
-	int			m_iDrawID;
 	int			m_iOption;
-
-	int			m_iLocationIndex;
+	bool		m_bTMap;
 };

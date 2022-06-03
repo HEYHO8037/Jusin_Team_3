@@ -182,6 +182,7 @@
     <ClInclude Include="Player_Ho.h" />
     <ClInclude Include="Player_JUN.h" />
     <ClInclude Include="Player_Seok.h" />
+    <ClInclude Include="Player_SON.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="Player_Ho.cpp" />
     <ClCompile Include="Player_JUN.cpp" />
     <ClCompile Include="Player_Seok.cpp" />
+    <ClCompile Include="Player_SON.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />

@@ -79,6 +79,8 @@
     <ClCompile Include="Stage.cpp">
       <Filter>95. Scene\05. Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Player_SON.cpp">
+      <Filter>01. Obj\00. Player\02. Player_SON</Filter>
     <ClCompile Include="Player_Ho.cpp">
       <Filter>01. Obj\00. Player\02. Player_HO</Filter>
     </ClCompile>
@@ -182,9 +184,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Struct.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -197,6 +196,13 @@
     <ClInclude Include="Stage.h">
       <Filter>95. Scene\05. Stage</Filter>
     </ClInclude>
+
+    <ClInclude Include="Struct.h">
+      <Filter>99. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_SON.h">
+      <Filter>01. Obj\00. Player\02. Player_SON</Filter>
+
     <ClInclude Include="Player_Ho.h">
       <Filter>01. Obj\00. Player\02. Player_HO</Filter>
     </ClInclude>
@@ -216,6 +222,7 @@
     </ClInclude>
     <ClInclude Include="Monster_SEOK.h">
       <Filter>01. Obj\02.Monster\01. Monster_SEOK</Filter>
+
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +330,10 @@
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{286c2065-46d5-49c3-b47c-87b0770ad276}</UniqueIdentifier>
     </Filter>
+
+    <Filter Include="01. Obj\00. Player\02. Player_SON">
+      <UniqueIdentifier>{8fcae6ac-4373-49b6-adcc-395b354d25fe}</UniqueIdentifier>
+
     <Filter Include="01. Obj\00. Player\02. Player_HO">
       <UniqueIdentifier>{10fbe40f-eb19-42c1-899c-607f181803a1}</UniqueIdentifier>
     </Filter>
@@ -342,6 +353,7 @@
     </Filter>
     <Filter Include="01. Obj\02.Monster\01. Monster_SEOK">
       <UniqueIdentifier>{e9622f11-842f-452f-ba04-f9b056aef06d}</UniqueIdentifier>
+
     </Filter>
   </ItemGroup>
   <ItemGroup>

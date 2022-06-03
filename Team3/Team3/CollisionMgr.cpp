@@ -1,5 +1,9 @@
 #include "stdafx.h"
 #include "CollisionMgr.h"
+#include "ObjMgr.h"
+#include "TileMgr.h"
+#include "Player_SON.h"
+
 #include "Monster_HO.h"
 #include "Player_Ho.h"
 #include "Bullet_HO.h"
@@ -46,13 +50,13 @@ bool CCollisionMgr::Check_Rect(CObj* pDest, CObj* pSour, float *pX, float* pY)
 
 bool CCollisionMgr::Check_Sphere(CObj* pDest, CObj* pSour)
 {
-	// abs : Àý´ë°ªÀ» ±¸ÇØÁÖ´Â ÇÔ¼ö
+	// abs : ì ˆëŒ€ê°’ì„ êµ¬í•´ì£¼ëŠ” í•¨ìˆ˜
 	//float	fWidth = fabs(pSour->Get_Info().vPos.x - pDest->Get_Info().vPos.x);
 	//float	fHeight = fabs(pSour->Get_Info().vPos.y - pDest->Get_Info().vPos.y);
 	float	fWidth = fabs(pDest->Get_Info().vPos.x - pSour->Get_Info().vPos.x);
 	float	fHeight = fabs(pDest->Get_Info().vPos.y - pSour->Get_Info().vPos.y);
 
-	// sqrt : ·çÆ®¸¦ ¾º¿öÁÖ´Â ÇÔ¼ö
+	// sqrt : ë£¨íŠ¸ë¥¼ ì”Œì›Œì£¼ëŠ” í•¨ìˆ˜
 	float	fDiagonal = sqrtf(fWidth * fWidth + fHeight * fHeight);
 
  	float	fRadius = (pDest->Get_Info().fCX + pSour->Get_Info().fCX) * 0.5f;

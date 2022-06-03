@@ -15,6 +15,7 @@ public:
 	}
 	const INFO&		Get_Info(void) const { return m_tInfo; }
 	const RECT&		Get_Rect(void) const { return m_tRect; }
+	//const RENDERID	Get_RenderID(void) const { return m_eRender; }
 
 	void		Set_Dead() { m_bDead = true; }
 
@@ -25,6 +26,11 @@ public:
 	void		Set_Angle(float _Angle) { m_fAngle = _Angle; }
 
 	void		Set_Speed(float _Speed) { m_fSpeed = _Speed; }
+
+	// Tetris Tile
+	void Set_DrawID(int _iID) { m_iDrawID = _iID; }
+	const int& Get_DrawID(void) const { return m_iDrawID; }
+	const bool& Get_Move(void) const { return m_bStopMove; }
 
 	virtual		void	Initialize(void)	PURE;
 	virtual		int		Update(void)		PURE;
@@ -37,13 +43,26 @@ protected:
 	RECT		m_tRect;
 	DIRECTION	m_eDir;
 
+	//RENDERID	m_eRender;
+
 	D3DXMATRIX matScale;
 	D3DXMATRIX matRotZ;
 	D3DXMATRIX matTrans;
 
+
+	// Tetris Tile
+	int			m_iDrawID;
+	int			m_iLocationIndex;
+	bool		m_bStopMove;
+	DWORD		m_dwDownTime;
+
 	bool		m_bDead;
 
 	float		m_fAngle;
+
+	bool		m_bDead;
+
 	float		m_fSpeed;
+
 };
 

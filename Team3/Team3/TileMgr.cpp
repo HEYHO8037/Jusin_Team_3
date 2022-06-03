@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "TileMgr.h"
+#include "ObjMgr.h"
 #include "AbstractFactory.h"
-#include "ScrollMgr.h"
+#include "Player_SON.h"
 
 CTileMgr* CTileMgr::m_pInstance = nullptr;
 
@@ -17,59 +18,161 @@ CTileMgr::~CTileMgr()
 
 void CTileMgr::Initialize()
 {
-	// 블록이 내려갈 때 스왑으로 해야 함.
+	m_vecTile.reserve(TILEX * TILEY);
 
 	for (int i = 0; i < TILEY; ++i)
 	{
 		for (int j = 0; j < TILEX; ++j)
 		{
-			float		fX = (TILECX >> 1) + float(TILECX * j);
-			float		fY = (TILECY >> 1) + float(TILECY * i);
-			D3DXVECTOR3 vPos = { fX, fY, 0.f };
-			CObj* pTile = /*nullptr;*/ CAbstractFactory<CTile>::Create(vPos);
-			m_vecTile.push_back(pTile);
+			m_vecTile.push_back(nullptr);
 		}
 	}
+
+	for (int i = 0; i < 10; ++i)
+	{
+		m_iArray[i] = 0;
+	}
+
+	int iIndex = 0;
+	int iLeft = 0;
+	int iRight = 11;
+	int iBottom = 281;
+	CObj* pTile = nullptr;
+
+	for (int i = 0; i < TILEY; ++i)
+	{
+		for (int j = 0; j < TILEX; ++j)
+		{
+			if (iLeft == i * TILEX + j)
+			{
+				pTile = CAbstractFactory<CTile>::Create_Tile(iIndex);
+				dynamic_cast<CTile*>(pTile)->Set_TMap();
+				m_vecTile[iIndex] = pTile;
+				++iIndex;
+				iLeft += 20;
+			}
+			else if (iRight == i * TILEX + j)
+			{
+				pTile = CAbstractFactory<CTile>::Create_Tile(iIndex);
+				dynamic_cast<CTile*>(pTile)->Set_TMap();
+				m_vecTile[iIndex] = pTile;
+				++iIndex;
+				iRight += 20;
+			}
+			else if (iBottom == i * TILEX + j)
+			{
+				pTile = CAbstractFactory<CTile>::Create_Tile(iIndex);
+				dynamic_cast<CTile*>(pTile)->Set_TMap();
+				m_vecTile[iIndex] = pTile;
+				++iIndex;
+				++iBottom;
+			}
+			else
+			{
+				m_vecTile[iIndex] = nullptr;
+				++iIndex;
+			}
+		}
+	}
+
+	m_iPoint = 0;
+	m_iPointCheak = 0;
+	m_StopDelete = false;
 }
 
 void CTileMgr::Update()
 {
-	for (auto& iter : m_vecTile)
-		if (iter)
-			iter->Update();
+	for (int i = 0; i < TILEY; ++i)
+	{
+		for (int j = 0; j < TILEX; ++j)
+		{
+			if (nullptr != m_vecTile[i * TILEX + j])
+			{
+				m_vecTile[i * TILEX + j]->Update();
+			}
+		}
+	}
 }
 
 void CTileMgr::LateUpdate()
 {
-	for (auto& iter : m_vecTile)
-		if (iter)
-			iter->LateUpdate();
+	int iID = 0;
+	int iIDCheak = 1;
+	
+	for (int i = 0; i < TILEY; ++i)
+	{
+		for (int j = 0; j < TILEX; ++j)
+		{
+			if (nullptr != m_vecTile[i * TILEX + j])
+			{
+				m_vecTile[i * TILEX + j]->LateUpdate();
+
+				if (!m_StopDelete)
+				{
+					iID = i * TILEX + j;
+
+					if (iID % TILEX > 0 && iID % TILEX < 11)
+					{
+						if (iID % TILEX == iIDCheak)
+						{
+							m_iArray[iIDCheak - 1] = iID;
+							++iIDCheak;
+						}
+						else if (10 < iIDCheak)
+						{
+							for (int i = 0; i < (iIDCheak - 1); ++i)
+							{
+								int iTemp = m_iArray[i];
+								Safe_Delete(m_vecTile[iTemp]);
+								m_vecTile[iTemp] = nullptr;
+								for (int j = 1; j < int(iTemp / TILEX); ++j)
+								{
+									if (nullptr != m_vecTile[iTemp - TILEX * j])
+									{
+										CObj* pTemp = m_vecTile[iTemp - TILEX * j];
+										m_vecTile[iTemp - TILEX * (j - 1)] = pTemp;
+										m_vecTile[iTemp - TILEX * j] = nullptr;
+										m_vecTile[iTemp - TILEX * (j - 1)]->Set_DrawID(iTemp - TILEX * (j - 1));
+									}
+									else
+									{
+									}
+								}
+							}
+							iIDCheak = 1;
+							++m_iPointCheak;
+							m_iPoint += 1000;
+
+							if (10 <= m_iPointCheak)
+							{
+								m_iPoint += 5000;
+								m_iPointCheak = 0;
+							}
+						}
+						else
+						{
+							iIDCheak = 1;
+						}
+					}
+				}
+
+			}
+		}
+	}
 }
 
 void CTileMgr::Render(HDC hDC)
 {
-	for (auto& iter : m_vecTile)
-		if (iter)
-			iter->Render(hDC);
-
-	/*int	iCullX = abs((int)CScrollMgr::Get_Instance()->Get_ScrollX() / TILECX);
-	int	iCullY = abs((int)CScrollMgr::Get_Instance()->Get_ScrollY() / TILECY);
-	
-	int	iCullWidth = WINCX / TILECX + iCullX + 2; 
-	int	iCullHeight = WINCY / TILECY + iCullY + 2;
-
-	for (int i = iCullY; i < iCullHeight; ++i)
+	for (int i = 0; i < TILEY; ++i)
 	{
-		for (int j = iCullX; j < iCullWidth; ++j)
+		for (int j = 0; j < TILEX; ++j)
 		{
-			int	iIndex = i * TILEX + j;
-
-			if(0 > iIndex || m_vecTile.size() < (size_t)iIndex)
-				continue;
-
-			m_vecTile[iIndex]->Render(hDC);
+			if (nullptr != m_vecTile[i * TILEX + j])
+			{
+				m_vecTile[i * TILEX + j]->Render(hDC);
+			}
 		}
-	}*/
+	}
 }
 
 void CTileMgr::Release()
@@ -78,6 +181,13 @@ void CTileMgr::Release()
 	m_vecTile.clear();
 }
 
+void CTileMgr::Add_Tile(int _iIndex)
+{
+	if (TILEX * TILEY < _iIndex)
+		return;
+
+	m_vecTile[_iIndex] = CAbstractFactory<CTile>::Create_Tile(_iIndex);
+}
 
 void CTileMgr::Picking_Tile(POINT _pt, const int& _iDrawID, const int& _iOption)
 {
