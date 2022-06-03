@@ -79,6 +79,9 @@
     <ClCompile Include="Stage.cpp">
       <Filter>95. Scene\05. Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Player_SON.cpp">
+      <Filter>01. Obj\00. Player\02. Player_SON</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h">
@@ -168,9 +171,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Struct.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -182,6 +182,12 @@
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>95. Scene\05. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>99. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_SON.h">
+      <Filter>01. Obj\00. Player\02. Player_SON</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +294,9 @@
     </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{286c2065-46d5-49c3-b47c-87b0770ad276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\00. Player\02. Player_SON">
+      <UniqueIdentifier>{8fcae6ac-4373-49b6-adcc-395b354d25fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

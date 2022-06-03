@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "CollisionMgr.h"
+#include "ObjMgr.h"
+#include "TileMgr.h"
+#include "Player_SON.h"
 
 
 CCollisionMgr::CCollisionMgr()

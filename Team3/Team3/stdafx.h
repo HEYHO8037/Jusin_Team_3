@@ -31,6 +31,8 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
+#include <iostream>
+
 #ifdef _DEBUG
 
 #define _CRTDBG_MAP_ALLOC

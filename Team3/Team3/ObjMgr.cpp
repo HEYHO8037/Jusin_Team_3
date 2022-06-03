@@ -57,6 +57,9 @@ int CObjMgr::Update(void)
 		for (auto& iter = m_ObjList[i].begin();
 			iter != m_ObjList[i].end(); )
 		{
+			if (m_ObjList[i].empty())
+				break;
+
 			int iResult = (*iter)->Update();
 
 			if (OBJ_DEAD == iResult)
@@ -78,12 +81,12 @@ void CObjMgr::Late_Update(void)
 	{
 		for (auto& iter : m_ObjList[i])
 		{
-			/*iter->LateUpdate();
-
 			if (m_ObjList[i].empty())
 				break;
 
-			RENDERID eRender = iter->Get_RenderID();
+			iter->LateUpdate();
+
+			/*RENDERID eRender = iter->Get_RenderID();
 			m_RenderSort[eRender].push_back(iter);*/
 		}
 	}
@@ -95,19 +98,24 @@ void CObjMgr::Late_Update(void)
 template<typename T>
 bool		CompareY(T Dest, T Sour)
 {
-	return false; //Dest->Get_Info().fX < Sour->Get_Info().fY;
+	return Dest->Get_Info().vPos.x < Sour->Get_Info().vPos.y;
 }
 
 void CObjMgr::Render(HDC hDC)
 {
-	/*for (int i = 0; i < OBJ_END; ++i)
+	for (int i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& iter : m_ObjList[i])
+		{
+			if (m_ObjList[i].empty())
+				break;
+
 			iter->Render(hDC);
-	}*/
+		}
+	}
 
 
-	for (int i = 0; i < RENDER_END; ++i)
+	/*for (int i = 0; i < RENDER_END; ++i)
 	{
 		m_RenderSort[i].sort(CompareY<CObj*>);
 
@@ -115,7 +123,7 @@ void CObjMgr::Render(HDC hDC)
 			iter->Render(hDC);
 
 		m_RenderSort[i].clear();
-	}
+	}*/
 
 }
 
