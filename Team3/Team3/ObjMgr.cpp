@@ -42,6 +42,11 @@ CObj* CObjMgr::Get_Target(OBJID eID, CObj* pObj)
 	return pTarget;
 }
 
+const list<CObj*>& CObjMgr::Get_ObjList(OBJID eID)
+{
+	return m_ObjList[eID];
+}
+
 void CObjMgr::Add_Object(OBJID eID, CObj * pObj)
 {
 	if ((eID >= OBJ_END) || (nullptr == pObj))
@@ -83,8 +88,6 @@ void CObjMgr::Late_Update(void)
 			if (m_ObjList[i].empty())
 				break;
 
-			//RENDERID eRender = iter->Get_RenderID();
-			//m_RenderSort[eRender].push_back(iter);*/
 		}
 	}
 
@@ -105,18 +108,6 @@ void CObjMgr::Render(HDC hDC)
 		for (auto& iter : m_ObjList[i])
 			iter->Render(hDC);
 	}
-
-
-	for (int i = 0; i < RENDER_END; ++i)
-	{
-		m_RenderSort[i].sort(CompareY<CObj*>);
-
-		for (auto& iter : m_RenderSort[i])
-			iter->Render(hDC);
-
-		m_RenderSort[i].clear();
-	}
-
 }
 
 void CObjMgr::Release(void)

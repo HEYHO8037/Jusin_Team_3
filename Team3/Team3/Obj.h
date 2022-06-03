@@ -19,6 +19,8 @@ public:
 	void		Set_Dead() { m_bDead = true; }
 
 	void		Set_Dir(DIRECTION eDir) { m_eDir = eDir; }
+	void		Set_Angle(float fAngle) { m_fAngle = fAngle; }
+	void		Set_Dead(bool bDead) { m_bDead = bDead; }
 
 	void		Set_Angle(float _Angle) { m_fAngle = _Angle; }
 
@@ -39,15 +41,9 @@ protected:
 	D3DXMATRIX matRotZ;
 	D3DXMATRIX matTrans;
 
-	//D3DXVECTOR3 m_vArray[4];
-	//D3DXVECTOR3 m_vArrayRender[4];
-
 	bool		m_bDead;
 
 	float		m_fAngle;
-
-	float		fAngle;
-
 	float		m_fSpeed;
 };
 

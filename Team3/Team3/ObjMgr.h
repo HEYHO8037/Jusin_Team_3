@@ -11,6 +11,7 @@ private:
 public:
 	CObj*		Get_Player() { return m_ObjList[OBJ_PLAYER].front(); }
 	CObj*		Get_Target(OBJID eID, CObj* pObj);
+	const list<CObj*>& Get_ObjList(OBJID eID);
 
 public:
 	void		Add_Object(OBJID eID, CObj* pObj);

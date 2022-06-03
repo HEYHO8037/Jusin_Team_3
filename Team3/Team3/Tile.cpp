@@ -36,7 +36,7 @@ int CTile::Update(void)
 
 
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
-	D3DXMatrixRotationZ(&matRotZ, fAngle);
+	D3DXMatrixRotationZ(&matRotZ, m_fAngle);
 	m_tInfo.matWorld = matScale * matRotZ;
 	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
 	
