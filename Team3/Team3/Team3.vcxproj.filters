@@ -91,6 +91,25 @@
     <ClCompile Include="Item_JUN.cpp">
       <Filter>01. Obj\01. Item\00. Item_JUN</Filter>
     </ClCompile>
+    <ClCompile Include="Player_SON.cpp">
+      <Filter>01. Obj\00. Player\02. Player_SON</Filter>
+    <ClCompile Include="Player_Ho.cpp">
+      <Filter>01. Obj\00. Player\02. Player_HO</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_HO.cpp">
+      <Filter>01. Obj\01. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_HO.cpp">
+      <Filter>01. Obj\02. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall_HO.cpp">
+      <Filter>01. Obj\03. Wall</Filter>
+    <ClCompile Include="Bullet_Seok.cpp">
+      <Filter>01. Obj\01. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_SEOK.cpp">
+      <Filter>01. Obj\02.Monster\01. Monster_SEOK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h">
@@ -168,9 +187,6 @@
     <ClInclude Include="Player_JUN.h">
       <Filter>01. Obj\00. Player\00. Player_JUN</Filter>
     </ClInclude>
-    <ClInclude Include="Player_Seok.h">
-      <Filter>01. Obj\00. Player\01. Player_SEOK</Filter>
-    </ClInclude>
     <ClInclude Include="TileMgr.h">
       <Filter>97. Manager\07. TileMgr</Filter>
     </ClInclude>
@@ -178,9 +194,6 @@
       <Filter>97. Manager\07. TileMgr\00. Tile</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Struct.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
@@ -209,6 +222,34 @@
     </ClInclude>
     <ClInclude Include="Item_JUN.h">
       <Filter>01. Obj\01. Item\00. Item_JUN</Filter>
+    </ClInclude>
+
+    <ClInclude Include="Struct.h">
+      <Filter>99. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_SON.h">
+      <Filter>01. Obj\00. Player\02. Player_SON</Filter>
+
+    <ClInclude Include="Player_Ho.h">
+      <Filter>01. Obj\00. Player\02. Player_HO</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_HO.h">
+      <Filter>01. Obj\01. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_HO.h">
+      <Filter>01. Obj\02. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall_HO.h">
+      <Filter>01. Obj\03. Wall</Filter>
+    <ClInclude Include="Bullet_Seok.h">
+      <Filter>01. Obj\01. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Seok.h">
+      <Filter>01. Obj\00. Player\01. Player_SEOK</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_SEOK.h">
+      <Filter>01. Obj\02.Monster\01. Monster_SEOK</Filter>
+
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +374,30 @@
     </Filter>
     <Filter Include="97. Manager\95. Scene\05. Stage">
       <UniqueIdentifier>{0d32d2fd-8962-4656-a0ca-83b8b522585f}</UniqueIdentifier>
+
+    <Filter Include="01. Obj\00. Player\02. Player_SON">
+      <UniqueIdentifier>{8fcae6ac-4373-49b6-adcc-395b354d25fe}</UniqueIdentifier>
+
+    <Filter Include="01. Obj\00. Player\02. Player_HO">
+      <UniqueIdentifier>{10fbe40f-eb19-42c1-899c-607f181803a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Monster">
+      <UniqueIdentifier>{ec20d229-cde5-49d3-97e7-d16514023272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02. Bullet">
+      <UniqueIdentifier>{a92018cb-fdd4-4723-a73f-f8d3dcf48689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\03. Wall">
+      <UniqueIdentifier>{ce0143bc-2dc9-4386-8312-1ea2f489ceb7}</UniqueIdentifier>
+    <Filter Include="01. Obj\01. Bullet">
+      <UniqueIdentifier>{644fe489-f9e0-4460-93e4-6cdecb133809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02.Monster">
+      <UniqueIdentifier>{769df4eb-5835-4ce1-83ae-65205c3414ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02.Monster\01. Monster_SEOK">
+      <UniqueIdentifier>{e9622f11-842f-452f-ba04-f9b056aef06d}</UniqueIdentifier>
+
     </Filter>
   </ItemGroup>
   <ItemGroup>

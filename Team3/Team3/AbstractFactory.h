@@ -39,15 +39,33 @@ public:
 		return pObj;
 	}
 
-	static CObj*	Create(D3DXVECTOR3 _vPos, float _fAngle)
+	static CObj*	Create(D3DXVECTOR3 _vPos, float _fAngle ,float _fSpeed)
 	{
 		CObj*	pObj = new T;
 
 		pObj->Initialize();
 		pObj->Set_Pos(_vPos);
 		pObj->Set_Angle(_fAngle);
+		pObj->Set_Speed(_fSpeed);
 
 		return pObj;
 	}
+
+	static CObj*	Create_Tile(int _iIndex)
+	{
+		CObj*	pObj = new T(_iIndex);
+		pObj->Initialize();
+
+		return pObj;
+	}
+
+	static CObj*	Create_Tetris(int _iIndex, TILETYPE _eTileType)
+	{
+		CObj*	pObj = new T(_iIndex, _eTileType);
+		pObj->Initialize();
+
+		return pObj;
+	}
+
 };
 

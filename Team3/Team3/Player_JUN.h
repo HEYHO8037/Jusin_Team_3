@@ -13,6 +13,7 @@ public:
 	virtual void LateUpdate(void)	override;
 	virtual void Render(HDC hDC)	override;
 	virtual void Release(void)		override;
+	virtual void    Set_Damage(void) override;
 
 	void Keyinput(void);
 

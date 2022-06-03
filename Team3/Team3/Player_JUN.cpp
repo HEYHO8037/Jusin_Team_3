@@ -3,27 +3,27 @@
 
 #include "KeyMgr.h"
 /*
-±×¸² ±×¸®°í, ÇÃ·¹ÀÌ¾î´Â È¸Àü ¾ÈÇØ? ÇØ?
-¾ÈÇÏ´øµ¥¿ä
-±×·³ È¸Àü ¾È½ÃÅ°°í?
-¾Æ³Ä È¸Àü ³Ö¾î, ¿Ö³Ä¸é ¾ÆÀÌÅÛ Àß¸ø¸ÔÀ¸¸é À§·Î ¿Ã¶ó°¡°Ô
-Á¡ÇÁ ³Ö°í, 
+ê·¸ë¦¼ ê·¸ë¦¬ê³ , í”Œë ˆì´ì–´ëŠ” íšŒì „ ì•ˆí•´? í•´?
+ì•ˆí•˜ë˜ë°ìš”
+ê·¸ëŸ¼ íšŒì „ ì•ˆì‹œí‚¤ê³ ?
+ì•„ëƒ íšŒì „ ë„£ì–´, ì™œëƒë©´ ì•„ì´í…œ ìž˜ëª»ë¨¹ìœ¼ë©´ ìœ„ë¡œ ì˜¬ë¼ê°€ê²Œ
+ì í”„ ë„£ê³ , 
 */
 
 /*
-ÇÃ·¹ÀÌ¾î ¿ìÃøÀÌ ÄÑÁö¸é 30µµ ¸¸Å­ È¸ÀüÇÏ°í ´Ù½Ã false·Î
-ÇÃ·¹ÀÌ¾î ÁÂÃøÀÌ ÄÑÁö¸é -30µµ ¸¸Å­ È¸ÀüÇÏ°í ´Ù½Ã false·Î
+í”Œë ˆì´ì–´ ìš°ì¸¡ì´ ì¼œì§€ë©´ 30ë„ ë§Œí¼ íšŒì „í•˜ê³  ë‹¤ì‹œ falseë¡œ
+í”Œë ˆì´ì–´ ì¢Œì¸¡ì´ ì¼œì§€ë©´ -30ë„ ë§Œí¼ íšŒì „í•˜ê³  ë‹¤ì‹œ falseë¡œ
 
-ÀÌ°É ÇÃ·¹ÀÌ¾î ¸»°í ÀüºÎ °®°íÀÖ¾î¾ß ÇÏ´Ï±î...
-obj ¸Å´ÏÀú¿¡¼­ ÇÔ¼ö °¡Á®¿À°í, -> ¤¤¤¤ ÇÃ·¹ÀÌ¾î¿¡¼­ 30¾¿ ³Ñ°ÜÁà
-//±×¸®°í 1µµ ³Ñ¾î¿Ã ¶§¸¶´Ù 4¾¿ ÀÌµ¿
+ì´ê±¸ í”Œë ˆì´ì–´ ë§ê³  ì „ë¶€ ê°–ê³ ìžˆì–´ì•¼ í•˜ë‹ˆê¹Œ...
+obj ë§¤ë‹ˆì €ì—ì„œ í•¨ìˆ˜ ê°€ì ¸ì˜¤ê³ , -> ã„´ã„´ í”Œë ˆì´ì–´ì—ì„œ 30ì”© ë„˜ê²¨ì¤˜
+//ê·¸ë¦¬ê³  1ë„ ë„˜ì–´ì˜¬ ë•Œë§ˆë‹¤ 4ì”© ì´ë™
 
-±×·³ ¶óÀÎ ¸Å´ÏÀú·Î º¸³»ÁÖ°í
-¶óÀÎ ¸Å´ÏÀú
+ê·¸ëŸ¼ ë¼ì¸ ë§¤ë‹ˆì €ë¡œ ë³´ë‚´ì£¼ê³ 
+ë¼ì¸ ë§¤ë‹ˆì €
 */
 
-//ÀÏÁ¤¸¸Å­ °¡¸é ¿øÅëÀÌ ±× À§Ä¡·Î µ¹¾Æ°¡ Áà¾ßÇÔ
-// ´Ù½Ã ¿·À¸·Î °¡¸é ´Ù½Ã µ¹¾Æ°¡ Áà¾ßÇÔ
+//ì¼ì •ë§Œí¼ ê°€ë©´ ì›í†µì´ ê·¸ ìœ„ì¹˜ë¡œ ëŒì•„ê°€ ì¤˜ì•¼í•¨
+// ë‹¤ì‹œ ì˜†ìœ¼ë¡œ ê°€ë©´ ë‹¤ì‹œ ëŒì•„ê°€ ì¤˜ì•¼í•¨
 
 // 
 
@@ -36,7 +36,7 @@ CPlayer_JUN::CPlayer_JUN()
 
 	D3DXMatrixIdentity(&m_tInfo.matWorld);
 
-	//¸öÅëÀÇ Áß½ÉÀÌ ÁßÁ¡
+	//ëª¸í†µì˜ ì¤‘ì‹¬ì´ ì¤‘ì 
 
 	m_vBody[0] = { -20.f, -20.f, 0.f };
 	m_vBody[1] = { 20.f, -20.f, 0.f };
@@ -136,12 +136,12 @@ int CPlayer_JUN::Update(void)
 	}
 
 	//std::cout << m_tInfo.vPos.x << std::endl;
-	//ÇÃ¸¶120¾¿
-	//120¸¸Å­ °¡¸é 3µµ¾¿ 15¹ø È¸ÀüÇÏ°í 
-	// ÇÃ¸¶ 120ÀÌ ³Ñ¾î°¥¶§¸¸...
-	// int·Î -30 ¶Ç´Â 30
+	//í”Œë§ˆ120ì”©
+	//120ë§Œí¼ ê°€ë©´ 3ë„ì”© 15ë²ˆ íšŒì „í•˜ê³  
+	// í”Œë§ˆ 120ì´ ë„˜ì–´ê°ˆë•Œë§Œ...
+	// intë¡œ -30 ë˜ëŠ” 30
 
-	// -120 ~ 120 : 240À¸·Î µÎ°í 120»©¸é µÈ´Ù
+	// -120 ~ 120 : 240ìœ¼ë¡œ ë‘ê³  120ë¹¼ë©´ ëœë‹¤
 	// 
 
 	return OBJ_NOEVENT;
@@ -149,7 +149,7 @@ int CPlayer_JUN::Update(void)
 
 void CPlayer_JUN::LateUpdate(void)
 {
-	//¿Ö ¾ÈºÒ·Á ÀÌ°Å-> Ã¼Å©ÇØº¸ÀÚ
+	//ì™œ ì•ˆë¶ˆë ¤ ì´ê±°-> ì²´í¬í•´ë³´ìž
 }
 
 void CPlayer_JUN::Render(HDC hDC)
@@ -202,6 +202,11 @@ void CPlayer_JUN::Keyinput(void)
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 	{
-		// Á¡ÇÁ°¡ Á¡Á¡ Ä¿Áö°í 
+		// ì í”„ê°€ ì ì  ì»¤ì§€ê³  
 	}
 }
+
+void CPlayer_JUN::Set_Damage(void)
+{
+}
+

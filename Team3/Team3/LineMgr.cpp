@@ -5,6 +5,7 @@ CLineMgr*		CLineMgr::m_pInstance = nullptr;
 
 CLineMgr::CLineMgr()
 {
+
 }
 
 
@@ -30,10 +31,9 @@ void CLineMgr::Release(void)
 	m_LineList.clear();
 }
 
-bool CLineMgr::Collision_Line(float& _fX, float* pY)
+float CLineMgr::Collision_Line(float& _fX, float& _fY, float* pY)
 {
 	// 직선의 방정식
-
 	// Y - y1 = ((y2 - y1) / (x2 - x1)) * X - x1
 	// Y  = (((y2 - y1) / (x2 - x1)) * (X - x1)) + y1
 
@@ -44,8 +44,7 @@ bool CLineMgr::Collision_Line(float& _fX, float* pY)
 
 	for (auto& iter : m_LineList)
 	{
-		if (_fX >= iter->Get_Info().tLPoint.fX &&
-			_fX <= iter->Get_Info().tRPoint.fX)
+		if ((_fX >= iter->Get_Info().tLPoint.fX &&_fX <= iter->Get_Info().tRPoint.fX))
 		{
 			pTarget = iter;
 		}
@@ -60,10 +59,61 @@ bool CLineMgr::Collision_Line(float& _fX, float* pY)
 	float	y1 = pTarget->Get_Info().tLPoint.fY;
 	float	y2 = pTarget->Get_Info().tRPoint.fY;
 
-	*pY = (((y2 - y1) / (x2 - x1)) * (_fX - x1)) + y1;
-		return true;
-}
+	float Angle = atan2(y2 - y1, x2 - x1);
 
+	*pY = (((y2 - y1) / (x2 - x1)) * (_fX - x1)) + y1;
+	return Angle;
+}
+bool CLineMgr::Collision_VerticalLine(float & _fX, float & _fY, float * pY)
+{
+	if (m_LineList.empty())
+		return false;
+
+	CLine*		pTarget = nullptr;
+
+	for (auto& iter : m_LineList)
+	{
+		if (_fX >= iter->Get_Info().tLPoint.fX&&_fX <= iter->Get_Info().tRPoint.fX)
+		{
+			if (iter->Get_Info().tLPoint.fY > iter->Get_Info().tRPoint.fY)
+			{
+				if ((!(_fY <= iter->Get_Info().tLPoint.fY&&_fY  >= iter->Get_Info().tRPoint.fY))&&(_fY >=iter->Get_Info().tRPoint.fY))
+				{
+					pTarget = iter;
+				}
+				if (_fY  >= iter->Get_Info().tLPoint.fY)
+				{
+					pTarget = iter;
+				}
+
+			}
+			else if(iter->Get_Info().tLPoint.fY <= iter->Get_Info().tRPoint.fY)
+			{
+				if ((!(_fY <= iter->Get_Info().tRPoint.fY&&_fY >= iter->Get_Info().tLPoint.fY)) && (_fY >= iter->Get_Info().tLPoint.fY))
+				{
+ 					pTarget = iter;
+				}
+				if (_fY >= iter->Get_Info().tRPoint.fY)
+				{
+					pTarget = iter;
+				}
+			}
+		}
+	}
+
+	if (!pTarget)
+		return false;
+
+	float	x1 = pTarget->Get_Info().tLPoint.fX;
+	float	x2 = pTarget->Get_Info().tRPoint.fX;
+
+	float	y1 = pTarget->Get_Info().tLPoint.fY;
+	float	y2 = pTarget->Get_Info().tRPoint.fY;
+
+	*pY = (((y2 - y1) / (x2 - x1)) * (_fX - x1)) + y1;
+
+	return true;
+}
 void CLineMgr::Load_Line()
 {
 	HANDLE		hFile = CreateFile(L"../Data/Line.dat",			// 파일 경로와 이름 명시
@@ -101,5 +151,5 @@ void CLineMgr::Load_Line()
 	// 3. 파일 소멸
 	CloseHandle(hFile);
 
-	MessageBox(g_hWnd, _T("Load 완료"), _T("성공"), MB_OK);
+	//MessageBox(g_hWnd, _T("Load 완료"), _T("성공"), MB_OK);
 }

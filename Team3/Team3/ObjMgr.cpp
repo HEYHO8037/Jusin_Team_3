@@ -42,6 +42,11 @@ CObj* CObjMgr::Get_Target(OBJID eID, CObj* pObj)
 	return pTarget;
 }
 
+const list<CObj*>& CObjMgr::Get_ObjList(OBJID eID)
+{
+	return m_ObjList[eID];
+}
+
 void CObjMgr::Add_Object(OBJID eID, CObj * pObj)
 {
 	if ((eID >= OBJ_END) || (nullptr == pObj))
@@ -57,6 +62,9 @@ int CObjMgr::Update(void)
 		for (auto& iter = m_ObjList[i].begin();
 			iter != m_ObjList[i].end(); )
 		{
+			if (m_ObjList[i].empty())
+				break;
+
 			int iResult = (*iter)->Update();
 
 			if (OBJ_DEAD == iResult)
@@ -78,25 +86,22 @@ void CObjMgr::Late_Update(void)
 	{
 		for (auto& iter : m_ObjList[i])
 		{
-			iter->LateUpdate();
-			/*iter->LateUpdate();
-
 			if (m_ObjList[i].empty())
 				break;
 
-			RENDERID eRender = iter->Get_RenderID();
-			m_RenderSort[eRender].push_back(iter);*/
+			iter->LateUpdate();
+
 		}
 	}
 
-	//CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_BULLET], m_ObjList[OBJ_MONSTER]);
 	//CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
 }
 
 template<typename T>
 bool		CompareY(T Dest, T Sour)
 {
-	return false; //Dest->Get_Info().fX < Sour->Get_Info().fY;
+	return Dest->Get_Info().vPos.x < Sour->Get_Info().vPos.y;
 }
 
 void CObjMgr::Render(HDC hDC)
@@ -106,18 +111,6 @@ void CObjMgr::Render(HDC hDC)
 		for (auto& iter : m_ObjList[i])
 			iter->Render(hDC);
 	}
-
-
-	/*for (int i = 0; i < RENDER_END; ++i)
-	{
-		m_RenderSort[i].sort(CompareY<CObj*>);
-
-		for (auto& iter : m_RenderSort[i])
-			iter->Render(hDC);
-
-		m_RenderSort[i].clear();
-	}*/
-
 }
 
 void CObjMgr::Release(void)
