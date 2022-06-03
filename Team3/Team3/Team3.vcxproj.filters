@@ -79,6 +79,12 @@
     <ClCompile Include="Stage.cpp">
       <Filter>95. Scene\05. Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet_Seok.cpp">
+      <Filter>01. Obj\01. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_SEOK.cpp">
+      <Filter>01. Obj\02.Monster\01. Monster_SEOK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h">
@@ -156,9 +162,6 @@
     <ClInclude Include="Player_JUN.h">
       <Filter>01. Obj\00. Player\00. Player_JUN</Filter>
     </ClInclude>
-    <ClInclude Include="Player_Seok.h">
-      <Filter>01. Obj\00. Player\01. Player_SEOK</Filter>
-    </ClInclude>
     <ClInclude Include="TileMgr.h">
       <Filter>97. Manager\07. TileMgr</Filter>
     </ClInclude>
@@ -182,6 +185,15 @@
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>95. Scene\05. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_Seok.h">
+      <Filter>01. Obj\01. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Seok.h">
+      <Filter>01. Obj\00. Player\01. Player_SEOK</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_SEOK.h">
+      <Filter>01. Obj\02.Monster\01. Monster_SEOK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +300,15 @@
     </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{286c2065-46d5-49c3-b47c-87b0770ad276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet">
+      <UniqueIdentifier>{644fe489-f9e0-4460-93e4-6cdecb133809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02.Monster">
+      <UniqueIdentifier>{769df4eb-5835-4ce1-83ae-65205c3414ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02.Monster\01. Monster_SEOK">
+      <UniqueIdentifier>{e9622f11-842f-452f-ba04-f9b056aef06d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -57,3 +57,8 @@ void CPlayer_JUN::Render(HDC hDC)
 void CPlayer_JUN::Release(void)
 {
 }
+
+void CPlayer_JUN::Set_Damage(void)
+{
+}
+
