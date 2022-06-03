@@ -23,7 +23,9 @@ CBullet_HO::CBullet_HO(float fX, float fY, D3DXVECTOR3 vDir, BULLET_TYPE eBullet
 		m_vOriginPoint[i] = m_vPoint[i];
 
 	m_fSpeed = 3.f;
+	m_bDead = false;
 
+	m_savePos = m_tInfo.vPos;
 	m_bIsRender = true;
 }
 
@@ -58,6 +60,7 @@ int CBullet_HO::Update(void)
 
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
 	D3DXMatrixRotationZ(&matRotZ, m_fAngle);
+
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
 	m_tInfo.matWorld = matScale * matRotZ * matTrans;
@@ -65,15 +68,14 @@ int CBullet_HO::Update(void)
 	for (int i = 0; i < 4; ++i)
 	{
 		m_vPoint[i] = m_vOriginPoint[i];
+		m_tInfo.vPos += m_vDir * m_fSpeed;
 
-		m_vPoint[i] -= { m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f };
+
+		m_vPoint[i] -= { m_savePos.x, m_savePos.y, 0.f };
 		D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
 	}
 
 	m_tInfo.vPos += m_vDir;
-
-
-
 
 
 	return OBJ_NOEVENT;

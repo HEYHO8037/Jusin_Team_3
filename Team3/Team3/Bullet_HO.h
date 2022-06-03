@@ -23,6 +23,7 @@ public:
 	D3DXVECTOR3* Get_Point() { return m_vPoint; }
 
 private:
+	D3DXVECTOR3			m_savePos;
 	CObj*				m_pTarget;
 	bool				m_bIsRender;
 	BULLET_TYPE			m_eBulletType;

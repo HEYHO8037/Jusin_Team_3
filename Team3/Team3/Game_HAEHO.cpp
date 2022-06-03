@@ -32,13 +32,18 @@ void CGame_HAEHO::Initialize(void)
 	pWall = new CWall_HO(400, 450);
 	CObjMgr::Get_Instance()->Add_Object(OBJ_WALL, pWall);
 
-	
 	CObj* pObj = CAbstractFactory<CPlayer_Ho>::Create();
 	CObjMgr::Get_Instance()->Add_Object(OBJ_PLAYER, pObj);
 
 	pos.x = 600.f;
 	pos.y = 500.f;
-	CObj* pMonsterObj = CAbstractFactory<CMonster_HO>::Create();
+	CObj* pMonsterObj = CAbstractFactory<CMonster_HO>::Create(pos);
+	CObjMgr::Get_Instance()->Add_Object(OBJ_MONSTER, pMonsterObj);
+	dynamic_cast<CMonster_HO*>(pMonsterObj)->Set_Target(pObj);
+
+	pos.x = 300.f;
+	pos.y = 100.f;
+	pMonsterObj = CAbstractFactory<CMonster_HO>::Create(pos);
 	CObjMgr::Get_Instance()->Add_Object(OBJ_MONSTER, pMonsterObj);
 	dynamic_cast<CMonster_HO*>(pMonsterObj)->Set_Target(pObj);
 
