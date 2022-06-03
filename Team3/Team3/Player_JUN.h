@@ -15,12 +15,52 @@ public:
 	virtual void Release(void)		override;
 	virtual void    Set_Damage(void) override;
 
+	void Keyinput(void);
+
+	void Set_Right(const bool& _Right)
+	{
+		m_bRight = _Right;
+	}
+
+	void Set_Left(const bool& _Left)
+	{
+		m_bLeft = _Left;
+	}
+
+	const bool& Get_Right()
+	{
+		return m_bRight;
+	}
+
+	const bool& Get_Left()
+	{
+		return m_bLeft;
+	}
+
+	const float& Get_ObjAngle()
+	{
+		return m_fObjAngle;
+	}
+
+	void Set_ObjAngle(const float& _fObjAngle)
+	{
+		m_fObjAngle += _fObjAngle;
+	}
+
 private:
-	D3DXVECTOR3 m_vBody[8];
+	D3DXVECTOR3 m_vBody[9];
 
-	D3DXVECTOR3 m_vOriginBody[8];
+	D3DXVECTOR3 m_vOriginBody[9];
 
+	float m_fObjAngle;
 
+	int m_iDistance;
+	bool m_bRight;
+	bool m_bLeft;
+
+	bool m_bJump;
+
+	int m_iJump_Y;
 
 };
 

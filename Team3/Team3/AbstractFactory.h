@@ -18,6 +18,14 @@ public:
 		return pObj;
 	}
 
+	static CObj*	Create(const float& _fRandAngle)
+	{
+		CObj*	pObj = new T(_fRandAngle);
+		pObj->Initialize();
+
+		return pObj;
+	}
+
 	static CObj*	Create(D3DXVECTOR3 _vPos, DIRECTION eDir = DIR_END)
 	{
 		CObj*	pObj = new T;

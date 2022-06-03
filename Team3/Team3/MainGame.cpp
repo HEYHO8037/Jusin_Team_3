@@ -16,6 +16,9 @@ void CMainGame::Initialize(void)
 {
 	m_hDC = GetDC(g_hWnd);
 
+	CSceneMgr::Get_Instance()->Scene_Change(GAME_JUNKYU);
+#if(0)
+
 	CSceneMgr::Get_Instance()->Scene_Change(GAME_SON);
 
 #if(1)
@@ -29,6 +32,7 @@ void CMainGame::Initialize(void)
 	}
 
 #endif
+
 
 
 	//CSceneMgr::Get_Instance()->Scene_Change(GAME_HAEHO);

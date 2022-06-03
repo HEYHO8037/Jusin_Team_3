@@ -59,9 +59,6 @@ protected:
 	bool		m_bDead;
 
 	float		m_fAngle;
-
-	bool		m_bDead;
-
 	float		m_fSpeed;
 
 };

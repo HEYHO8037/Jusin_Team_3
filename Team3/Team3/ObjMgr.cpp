@@ -109,12 +109,7 @@ void CObjMgr::Render(HDC hDC)
 	for (int i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& iter : m_ObjList[i])
-		{
-			if (m_ObjList[i].empty())
-				break;
-
 			iter->Render(hDC);
-		}
 	}
 }
 

@@ -169,10 +169,14 @@
     <ClInclude Include="Game_SEOK.h" />
     <ClInclude Include="Game_SON.h" />
     <ClInclude Include="Include.h" />
+    <ClInclude Include="Item_JUN.h" />
+    <ClInclude Include="JUNLine.h" />
+    <ClInclude Include="JUNLineMgr.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineMgr.h" />
+    <ClInclude Include="LongLine.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster_HO.h" />
     <ClInclude Include="Monster_SEOK.h" />
@@ -182,7 +186,11 @@
     <ClInclude Include="Player_Ho.h" />
     <ClInclude Include="Player_JUN.h" />
     <ClInclude Include="Player_Seok.h" />
+
+    <ClInclude Include="RandomMgr.h" />
+
     <ClInclude Include="Player_SON.h" />
+
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
@@ -207,10 +215,14 @@
     <ClCompile Include="Game_JUN.cpp" />
     <ClCompile Include="Game_SEOK.cpp" />
     <ClCompile Include="Game_SON.cpp" />
+    <ClCompile Include="Item_JUN.cpp" />
+    <ClCompile Include="JUNLine.cpp" />
+    <ClCompile Include="JUNLineMgr.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
+    <ClCompile Include="LongLine.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster_HO.cpp" />
     <ClCompile Include="Monster_SEOK.cpp" />

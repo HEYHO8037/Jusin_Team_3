@@ -11,22 +11,22 @@
       <Filter>96. UI\00. Timer</Filter>
     </ClCompile>
     <ClCompile Include="Game_HAEHO.cpp">
-      <Filter>95. Scene\02. Game_HAEHO</Filter>
+      <Filter>97. Manager\95. Scene\02. Game_HAEHO</Filter>
     </ClCompile>
     <ClCompile Include="Game_JUN.cpp">
-      <Filter>95. Scene\03. Game_JUN</Filter>
+      <Filter>97. Manager\95. Scene\03. Game_JUN</Filter>
     </ClCompile>
     <ClCompile Include="Game_SEOK.cpp">
-      <Filter>95. Scene\01. Game_SEOK</Filter>
+      <Filter>97. Manager\95. Scene\01. Game_SEOK</Filter>
     </ClCompile>
     <ClCompile Include="Game_SON.cpp">
-      <Filter>95. Scene\00. Game_SON</Filter>
+      <Filter>97. Manager\95. Scene\00. Game_SON</Filter>
     </ClCompile>
     <ClCompile Include="MyMenu.cpp">
-      <Filter>95. Scene\04. MyMenu</Filter>
+      <Filter>97. Manager\95. Scene\04. MyMenu</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>95. Scene</Filter>
+      <Filter>97. Manager\95. Scene</Filter>
     </ClCompile>
     <ClCompile Include="SceneMgr.cpp">
       <Filter>97. Manager\02. SceneMgr</Filter>
@@ -77,7 +77,19 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-      <Filter>95. Scene\05. Stage</Filter>
+      <Filter>97. Manager\95. Scene\05. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="JUNLineMgr.cpp">
+      <Filter>97. Manager\08. JUNLineMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="JUNLine.cpp">
+      <Filter>97. Manager\08. JUNLineMgr\JUNLine</Filter>
+    </ClCompile>
+    <ClCompile Include="LongLine.cpp">
+      <Filter>97. Manager\08. JUNLineMgr\JUNLine_Long</Filter>
+    </ClCompile>
+    <ClCompile Include="Item_JUN.cpp">
+      <Filter>01. Obj\01. Item\00. Item_JUN</Filter>
     </ClCompile>
     <ClCompile Include="Player_SON.cpp">
       <Filter>01. Obj\00. Player\02. Player_SON</Filter>
@@ -125,22 +137,22 @@
       <Filter>96. UI\00. Timer</Filter>
     </ClInclude>
     <ClInclude Include="Game_HAEHO.h">
-      <Filter>95. Scene\02. Game_HAEHO</Filter>
+      <Filter>97. Manager\95. Scene\02. Game_HAEHO</Filter>
     </ClInclude>
     <ClInclude Include="Game_JUN.h">
-      <Filter>95. Scene\03. Game_JUN</Filter>
+      <Filter>97. Manager\95. Scene\03. Game_JUN</Filter>
     </ClInclude>
     <ClInclude Include="Game_SEOK.h">
-      <Filter>95. Scene\01. Game_SEOK</Filter>
+      <Filter>97. Manager\95. Scene\01. Game_SEOK</Filter>
     </ClInclude>
     <ClInclude Include="Game_SON.h">
-      <Filter>95. Scene\00. Game_SON</Filter>
+      <Filter>97. Manager\95. Scene\00. Game_SON</Filter>
     </ClInclude>
     <ClInclude Include="MyMenu.h">
-      <Filter>95. Scene\04. MyMenu</Filter>
+      <Filter>97. Manager\95. Scene\04. MyMenu</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>95. Scene</Filter>
+      <Filter>97. Manager\95. Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneMgr.h">
       <Filter>97. Manager\02. SceneMgr</Filter>
@@ -194,7 +206,22 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
-      <Filter>95. Scene\05. Stage</Filter>
+      <Filter>97. Manager\95. Scene\05. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="JUNLineMgr.h">
+      <Filter>97. Manager\08. JUNLineMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="JUNLine.h">
+      <Filter>97. Manager\08. JUNLineMgr\JUNLine</Filter>
+    </ClInclude>
+    <ClInclude Include="LongLine.h">
+      <Filter>97. Manager\08. JUNLineMgr\JUNLine_Long</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomMgr.h">
+      <Filter>97. Manager\09. RandomMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Item_JUN.h">
+      <Filter>01. Obj\01. Item\00. Item_JUN</Filter>
     </ClInclude>
 
     <ClInclude Include="Struct.h">
@@ -267,24 +294,6 @@
     <Filter Include="97. Manager\02. SceneMgr">
       <UniqueIdentifier>{90604270-9cfe-48b4-a722-a5430070fb84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="95. Scene">
-      <UniqueIdentifier>{59fca284-8320-4adf-a3bc-6086aa7611e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95. Scene\00. Game_SON">
-      <UniqueIdentifier>{bec7eea2-1ede-4b9f-a3e8-3f3ffc1d79c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95. Scene\01. Game_SEOK">
-      <UniqueIdentifier>{9a94ee6b-2407-4787-8f05-b3c10b61d87a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95. Scene\02. Game_HAEHO">
-      <UniqueIdentifier>{3533abe9-5c5f-47d4-9218-131e148e5ff2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95. Scene\03. Game_JUN">
-      <UniqueIdentifier>{3e7c4022-bc0c-446e-b58b-98a860813f9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95. Scene\04. MyMenu">
-      <UniqueIdentifier>{e937ef06-171b-42a1-874e-5aec7f2a3440}</UniqueIdentifier>
-    </Filter>
     <Filter Include="97. Manager\03. ScrollMgr">
       <UniqueIdentifier>{6584fa2c-eefd-406c-bcfc-19ef54a55430}</UniqueIdentifier>
     </Filter>
@@ -299,9 +308,6 @@
     </Filter>
     <Filter Include="97. Manager\05. ObjMgr">
       <UniqueIdentifier>{52bd2054-f2c2-4349-82e8-68fd61548392}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95. Scene\05. Stage">
-      <UniqueIdentifier>{0d32d2fd-8962-4656-a0ca-83b8b522585f}</UniqueIdentifier>
     </Filter>
     <Filter Include="97. Manager\06. UIMgr">
       <UniqueIdentifier>{31d16f0f-e49d-4048-80a3-2870f5ee5449}</UniqueIdentifier>
@@ -330,6 +336,44 @@
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{286c2065-46d5-49c3-b47c-87b0770ad276}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97. Manager\08. JUNLineMgr">
+      <UniqueIdentifier>{0c1aaa0d-2261-4627-9097-3daba20f2a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\08. JUNLineMgr\JUNLine">
+      <UniqueIdentifier>{aeb39ac3-5e79-4a02-a807-f89976297b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\08. JUNLineMgr\JUNLine_Long">
+      <UniqueIdentifier>{7be13bb8-48bf-4d4c-9172-f2f5d3ee390e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\09. RandomMgr">
+      <UniqueIdentifier>{01090482-fc9d-462f-9bde-147f09b0df83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Item">
+      <UniqueIdentifier>{ccdde590-44a3-44e2-8919-645d35962bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Item\00. Item_JUN">
+      <UniqueIdentifier>{a126da74-b37b-415c-9038-b53da872212f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\95. Scene">
+      <UniqueIdentifier>{59fca284-8320-4adf-a3bc-6086aa7611e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\95. Scene\00. Game_SON">
+      <UniqueIdentifier>{bec7eea2-1ede-4b9f-a3e8-3f3ffc1d79c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\95. Scene\01. Game_SEOK">
+      <UniqueIdentifier>{9a94ee6b-2407-4787-8f05-b3c10b61d87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\95. Scene\02. Game_HAEHO">
+      <UniqueIdentifier>{3533abe9-5c5f-47d4-9218-131e148e5ff2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\95. Scene\03. Game_JUN">
+      <UniqueIdentifier>{3e7c4022-bc0c-446e-b58b-98a860813f9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\95. Scene\04. MyMenu">
+      <UniqueIdentifier>{e937ef06-171b-42a1-874e-5aec7f2a3440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. Manager\95. Scene\05. Stage">
+      <UniqueIdentifier>{0d32d2fd-8962-4656-a0ca-83b8b522585f}</UniqueIdentifier>
 
     <Filter Include="01. Obj\00. Player\02. Player_SON">
       <UniqueIdentifier>{8fcae6ac-4373-49b6-adcc-395b354d25fe}</UniqueIdentifier>
