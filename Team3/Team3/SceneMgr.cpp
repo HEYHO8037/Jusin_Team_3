@@ -9,7 +9,7 @@
 CSceneMgr*	CSceneMgr::m_pInstance = nullptr;
 
 CSceneMgr::CSceneMgr()
-	: m_pScene(nullptr), m_eCurScene(GAME_MENU), m_ePreScene(GAME_END)
+	: m_pScene(nullptr), m_eCurScene(GAME_END), m_ePreScene(GAME_END)
 {
 }
 
@@ -59,6 +59,7 @@ void CSceneMgr::Scene_Change(GAMESCENE eID)
 
 void CSceneMgr::Update(void)
 {
+	Scene_Change(m_eCurScene);
 	m_pScene->Update();
 }
 

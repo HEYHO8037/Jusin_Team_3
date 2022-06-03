@@ -2,6 +2,8 @@
 #include "MainGame.h"
 #include "SceneMgr.h"
 
+#include "BmpMgr_3.h"
+
 CMainGame::CMainGame()
 {
 }
@@ -16,10 +18,15 @@ void CMainGame::Initialize(void)
 {
 	m_hDC = GetDC(g_hWnd);
 
-	CSceneMgr::Get_Instance()->Scene_Change(GAME_JUNKYU);
-#if(0)
+	//CSceneMgr::Get_Instance()->Scene_Change(GAME_JUNKYU);
 
-	CSceneMgr::Get_Instance()->Scene_Change(GAME_SON);
+	//CSceneMgr::Get_Instance()->Scene_Change(GAME_SON);
+
+	CBmpMgr_3::Get_Instance()->Initialize();
+
+	hBackDC = CBmpMgr_3::Get_Instance()->Find_Image(L"BACK");
+
+	hGroundDC = CBmpMgr_3::Get_Instance()->Find_Image(L"GROUND");
 
 #if(1)
 	if (::AllocConsole() == TRUE)
@@ -36,7 +43,7 @@ void CMainGame::Initialize(void)
 
 
 	//CSceneMgr::Get_Instance()->Scene_Change(GAME_HAEHO);
-	CSceneMgr::Get_Instance()->Scene_Change(GAME_SEOKGYUN);
+	CSceneMgr::Get_Instance()->Scene_Change(GAME_MENU);
 
 }
 
@@ -52,8 +59,14 @@ void CMainGame::LateUpdate(void)
 
 void CMainGame::Render(void)
 {
-	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
-	CSceneMgr::Get_Instance()->Render(m_hDC);
+	BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBackDC, 0, 0, SRCCOPY);
+
+	
+
+	Rectangle(hGroundDC, 0, 0, WINCX, WINCY);
+	CSceneMgr::Get_Instance()->Render(hGroundDC);
+
+	BitBlt(hBackDC, 0, 0, WINCX, WINCY, hGroundDC, 0, 0, SRCCOPY);
 }
 
 void CMainGame::Release(void)

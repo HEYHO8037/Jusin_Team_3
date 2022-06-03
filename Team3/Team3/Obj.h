@@ -20,7 +20,6 @@ public:
 	void		Set_Dead() { m_bDead = true; }
 
 	void		Set_Dir(DIRECTION eDir) { m_eDir = eDir; }
-	void		Set_Angle(float fAngle) { m_fAngle = fAngle; }
 	void		Set_Dead(bool bDead) { m_bDead = bDead; }
 
 	void		Set_Angle(float _Angle) { m_fAngle = _Angle; }
@@ -37,7 +36,7 @@ public:
 	virtual		void	LateUpdate(void)	PURE;
 	virtual		void	Render(HDC hDC)		PURE;
 	virtual		void	Release(void)		PURE;
-	virtual     void    Set_Damage(void)    PURE;
+	virtual     void    Set_Damage(void) {};
 protected:
 	INFO		m_tInfo;
 	RECT		m_tRect;

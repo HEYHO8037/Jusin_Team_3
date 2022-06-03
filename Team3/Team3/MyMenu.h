@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "Timer.h"
 
+#include "MyButton.h"
+
 class CLabel;
 
 class CMyMenu : public CScene
@@ -18,5 +20,7 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release(void) override;
 
+private:
+	CMyButton* m_pGameStart[4];
 };
 

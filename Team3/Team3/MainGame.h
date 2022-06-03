@@ -17,5 +17,8 @@ public:
 
 private:
 	HDC		m_hDC;
+
+	HDC		hBackDC;
+	HDC		hGroundDC;
 };
 

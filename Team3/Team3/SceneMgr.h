@@ -21,6 +21,8 @@ public:
 
 	GAMESCENE		Get_SceneID(void) { return m_eCurScene; }
 
+	void		Set_SceneID(const GAMESCENE& _eCurScene) { m_eCurScene = _eCurScene; }
+
 public:
 	static		CSceneMgr*		Get_Instance(void)
 	{
