@@ -18,6 +18,7 @@ public:
 
 	void		Set_Dir(DIRECTION eDir) { m_eDir = eDir; }
 	void		Set_Angle(float fAngle) { m_fAngle = fAngle; }
+	void		Set_Dead(bool bDead) { m_bDead = bDead; }
 
 	virtual		void	Initialize(void)	PURE;
 	virtual		int		Update(void)		PURE;

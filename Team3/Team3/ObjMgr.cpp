@@ -42,6 +42,11 @@ CObj* CObjMgr::Get_Target(OBJID eID, CObj* pObj)
 	return pTarget;
 }
 
+const list<CObj*>& CObjMgr::Get_ObjList(OBJID eID)
+{
+	return m_ObjList[eID];
+}
+
 void CObjMgr::Add_Object(OBJID eID, CObj * pObj)
 {
 	if ((eID >= OBJ_END) || (nullptr == pObj))
@@ -78,13 +83,13 @@ void CObjMgr::Late_Update(void)
 	{
 		for (auto& iter : m_ObjList[i])
 		{
-			/*iter->LateUpdate();
+			iter->LateUpdate();
 
 			if (m_ObjList[i].empty())
 				break;
 
-			RENDERID eRender = iter->Get_RenderID();
-			m_RenderSort[eRender].push_back(iter);*/
+			//RENDERID eRender = iter->Get_RenderID();
+			//m_RenderSort[eRender].push_back(iter);
 		}
 	}
 

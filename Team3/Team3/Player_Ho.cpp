@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player_Ho.h"
-
+#include "Bullet_HO.h"
+#include "ObjMgr.h"
 
 CPlayer_Ho::CPlayer_Ho()
 {
@@ -17,17 +18,17 @@ void CPlayer_Ho::Initialize(void)
 	m_tInfo.vPos = { 400.f, 300.f, 0.f };
 	m_tInfo.vLook = { 0.f, -1.f, 0.f };
 
-	m_vPoint[0] = { m_tInfo.vPos.x - 50.f,  m_tInfo.vPos.y - 50.f, 0.f };
-	m_vPoint[1] = { m_tInfo.vPos.x + 50.f,  m_tInfo.vPos.y - 50.f, 0.f };
-	m_vPoint[2] = { m_tInfo.vPos.x + 50.f,  m_tInfo.vPos.y + 50.f, 0.f };
-	m_vPoint[3] = { m_tInfo.vPos.x - 50.f,  m_tInfo.vPos.y + 50.f, 0.f };
+	m_vPoint[0] = { m_tInfo.vPos.x - 25.f,  m_tInfo.vPos.y - 25.f, 0.f };
+	m_vPoint[1] = { m_tInfo.vPos.x + 25.f,  m_tInfo.vPos.y - 25.f, 0.f };
+	m_vPoint[2] = { m_tInfo.vPos.x + 25.f,  m_tInfo.vPos.y + 25.f, 0.f };
+	m_vPoint[3] = { m_tInfo.vPos.x - 25.f,  m_tInfo.vPos.y + 25.f, 0.f };
 
 	for (int i = 0; i < 4; ++i)
 		m_vOriginPoint[i] = m_vPoint[i];
 
 
 	// Æ÷½Å
-	m_vGunPoint = { m_tInfo.vPos.x, m_tInfo.vPos.y - 100.f, 0.f };
+	m_vGunPoint = { m_tInfo.vPos.x, m_tInfo.vPos.y - 50.f, 0.f };
 
 	m_vOriginGunPoint = m_vGunPoint;
 
@@ -42,11 +43,18 @@ void CPlayer_Ho::Initialize(void)
 
 int CPlayer_Ho::Update(void)
 {
+	if (m_bDead)
+	{
+		return OBJ_DEAD;
+	}
+
 	Key_Input();
 
 	POINT MousePos;
 
 	GetCursorPos(&MousePos);
+		ScreenToClient(g_hWnd, &MousePos);
+
 
 	D3DXVECTOR3 vMousePos;
 	vMousePos.x = MousePos.x;
@@ -57,6 +65,7 @@ int CPlayer_Ho::Update(void)
 	m_tInfo.vDir = vMousePos - m_tInfo.vPos;
 
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+
 	D3DXVec3Normalize(&m_tInfo.vLook, &m_tInfo.vLook);
 
 	float fGunAngle = D3DXVec3Dot(&m_tInfo.vDir, &m_tInfo.vLook);
@@ -66,9 +75,12 @@ int CPlayer_Ho::Update(void)
 	if (m_tInfo.vPos.x > vMousePos.x)
 		m_fGunAngle *= -1.f;
 
+
+
+
 	D3DXMATRIX		GunMatScale, GunMatRotZ, GunMatTrans;
 
-	D3DXMatrixScaling(&matScale, -1.f, 1.f, 0.f);
+	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
 	D3DXMatrixRotationZ(&matRotZ, m_fAngle);
 	D3DXMatrixRotationZ(&GunMatRotZ, m_fGunAngle);
 
@@ -92,7 +104,12 @@ int CPlayer_Ho::Update(void)
 	m_vGunPoint -= { 400.f, 300.f, 0.f };
 	D3DXVec3TransformCoord(&m_vGunPoint, &m_vGunPoint, &matGunWorld);
 
-	return 0;
+	m_PovRaycast = m_vGunPoint - m_tInfo.vPos;
+
+	D3DXVec3Normalize(&m_PovRaycast, &m_PovRaycast);
+
+
+	return OBJ_NOEVENT;
 }
 
 void CPlayer_Ho::LateUpdate(void)
@@ -153,14 +170,10 @@ void CPlayer_Ho::Key_Input(void)
 	if (GetAsyncKeyState('D'))
 		m_fAngle += D3DXToRadian(3.f);
 
-	if (GetAsyncKeyState(VK_LEFT))
+	if (GetAsyncKeyState(VK_LBUTTON))
 	{
-		m_fGunAngle -= D3DXToRadian(3.f);
-	}
-
-	if (GetAsyncKeyState(VK_RIGHT))
-	{
-		m_fGunAngle += D3DXToRadian(3.f);
+		CBullet_HO* Bullet = new CBullet_HO(m_vGunPoint.x, m_vGunPoint.y, m_PovRaycast, PLAYER_BULLET);
+		CObjMgr::Get_Instance()->Add_Object(OBJ_BULLET, Bullet);
 	}
 
 }

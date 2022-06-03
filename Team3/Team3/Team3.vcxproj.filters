@@ -82,6 +82,15 @@
     <ClCompile Include="Player_Ho.cpp">
       <Filter>01. Obj\00. Player\02. Player_HO</Filter>
     </ClCompile>
+    <ClCompile Include="Monster_HO.cpp">
+      <Filter>01. Obj\01. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_HO.cpp">
+      <Filter>01. Obj\02. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall_HO.cpp">
+      <Filter>01. Obj\03. Wall</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h">
@@ -188,6 +197,15 @@
     </ClInclude>
     <ClInclude Include="Player_Ho.h">
       <Filter>01. Obj\00. Player\02. Player_HO</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_HO.h">
+      <Filter>01. Obj\01. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_HO.h">
+      <Filter>01. Obj\02. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall_HO.h">
+      <Filter>01. Obj\03. Wall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -297,6 +315,15 @@
     </Filter>
     <Filter Include="01. Obj\00. Player\02. Player_HO">
       <UniqueIdentifier>{10fbe40f-eb19-42c1-899c-607f181803a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Monster">
+      <UniqueIdentifier>{ec20d229-cde5-49d3-97e7-d16514023272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02. Bullet">
+      <UniqueIdentifier>{a92018cb-fdd4-4723-a73f-f8d3dcf48689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\03. Wall">
+      <UniqueIdentifier>{ce0143bc-2dc9-4386-8312-1ea2f489ceb7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
