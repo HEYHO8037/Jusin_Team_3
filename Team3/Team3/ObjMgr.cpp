@@ -78,17 +78,17 @@ void CObjMgr::Late_Update(void)
 	{
 		for (auto& iter : m_ObjList[i])
 		{
-			/*iter->LateUpdate();
+			iter->LateUpdate();
 
 			if (m_ObjList[i].empty())
 				break;
 
-			RENDERID eRender = iter->Get_RenderID();
-			m_RenderSort[eRender].push_back(iter);*/
+			//RENDERID eRender = iter->Get_RenderID();
+			//m_RenderSort[eRender].push_back(iter);*/
 		}
 	}
 
-	//CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_BULLET], m_ObjList[OBJ_MONSTER]);
 	//CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
 }
 
@@ -100,11 +100,11 @@ bool		CompareY(T Dest, T Sour)
 
 void CObjMgr::Render(HDC hDC)
 {
-	/*for (int i = 0; i < OBJ_END; ++i)
+	for (int i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& iter : m_ObjList[i])
 			iter->Render(hDC);
-	}*/
+	}
 
 
 	for (int i = 0; i < RENDER_END; ++i)
