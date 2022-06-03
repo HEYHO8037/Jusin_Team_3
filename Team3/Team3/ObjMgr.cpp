@@ -78,6 +78,7 @@ void CObjMgr::Late_Update(void)
 	{
 		for (auto& iter : m_ObjList[i])
 		{
+			iter->LateUpdate();
 			/*iter->LateUpdate();
 
 			if (m_ObjList[i].empty())
@@ -100,14 +101,14 @@ bool		CompareY(T Dest, T Sour)
 
 void CObjMgr::Render(HDC hDC)
 {
-	/*for (int i = 0; i < OBJ_END; ++i)
+	for (int i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& iter : m_ObjList[i])
 			iter->Render(hDC);
-	}*/
+	}
 
 
-	for (int i = 0; i < RENDER_END; ++i)
+	/*for (int i = 0; i < RENDER_END; ++i)
 	{
 		m_RenderSort[i].sort(CompareY<CObj*>);
 
@@ -115,7 +116,7 @@ void CObjMgr::Render(HDC hDC)
 			iter->Render(hDC);
 
 		m_RenderSort[i].clear();
-	}
+	}*/
 
 }
 

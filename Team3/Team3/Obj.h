@@ -38,6 +38,6 @@ protected:
 
 	bool		m_bDead;
 
-	float		fAngle;
+	float		m_fAngle;
 };
 

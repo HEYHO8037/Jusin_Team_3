@@ -41,6 +41,8 @@ bool CCollisionMgr::Check_Rect(CObj* pDest, CObj* pSour, float *pX, float* pY)
 
 bool CCollisionMgr::Check_Sphere(CObj* pDest, CObj* pSour)
 {
+
+
 	return false;
 }
 
