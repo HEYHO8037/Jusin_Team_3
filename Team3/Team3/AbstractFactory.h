@@ -31,13 +31,14 @@ public:
 		return pObj;
 	}
 
-	static CObj*	Create(D3DXVECTOR3 _vPos, float _fAngle)
+	static CObj*	Create(D3DXVECTOR3 _vPos, float _fAngle ,float _fSpeed)
 	{
 		CObj*	pObj = new T;
 
 		pObj->Initialize();
 		pObj->Set_Pos(_vPos);
 		pObj->Set_Angle(_fAngle);
+		pObj->Set_Speed(_fSpeed);
 
 		return pObj;
 	}
@@ -57,5 +58,6 @@ public:
 
 		return pObj;
 	}
+
 };
 

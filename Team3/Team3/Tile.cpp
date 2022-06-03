@@ -65,3 +65,7 @@ void CTile::Release(void)
 {
 	
 }
+
+void CTile::Set_Damage(void)
+{
+}

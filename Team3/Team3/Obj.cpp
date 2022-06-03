@@ -17,6 +17,13 @@ CObj::CObj()
 	D3DXMatrixIdentity(&matScale);
 	D3DXMatrixIdentity(&matRotZ);
 	D3DXMatrixIdentity(&matTrans);
+	D3DXMatrixIdentity(&m_tInfo.matWorldP);
+
+	/*for (int i = 0; i < 4; ++i)
+	{
+		ZeroMemory(&m_vArray[i], sizeof(D3DXVECTOR3));
+		ZeroMemory(&m_vArrayRender[i], sizeof(D3DXVECTOR3));
+	}*/
 }
 
 CObj::~CObj()
