@@ -9,10 +9,11 @@ CMyButton::CMyButton(const float& _fX, const float& _fY, const GAMESCENE& _eButt
 {
 	m_tInfo.fX = _fX;
 	m_tInfo.fY = _fY;
-	m_tInfo.fCX = 170.f;
+	m_tInfo.fCX = 120.f;
 	m_tInfo.fCY = 70.f;
 	m_bDead = false;
 	m_eButton = _eButton;
+	m_bClick = false;
 }
 
 
@@ -48,9 +49,10 @@ void CMyButton::LateUpdate(void)
 
 
 
-	if (PtInRect(&m_tRect, pt))
+	//if (PtInRect(&m_tRect, pt))
+	if (m_bClick)
 	{
-		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
+		//if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		{
 			switch (m_eButton)
 			{

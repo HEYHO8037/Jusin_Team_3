@@ -18,6 +18,7 @@ void CBmpMgr_3::Initialize(void)
 {
 	Insert_Bmp(L"../Resource/BACK.bmp",L"BACK");
 	Insert_Bmp(L"../Resource/GROUND.bmp", L"GROUND");
+	Insert_Bmp(L"../Resource/MENU.bmp", L"MENU");
 }
 
 void CBmpMgr_3::Insert_Bmp(const TCHAR * pFilePath, const TCHAR * pImageKey)

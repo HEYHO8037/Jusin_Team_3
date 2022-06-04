@@ -161,6 +161,8 @@ void CGame_SON::LateUpdate(void)
 
 void CGame_SON::Render(HDC hDC)
 {
+	BitBlt(hDC, 0, 0, WINCX, WINCY, m_hMemDC, 0, 0, SRCCOPY);
+
 	CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 	// Á¡¼ö UI

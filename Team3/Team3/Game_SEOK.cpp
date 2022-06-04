@@ -35,6 +35,8 @@ void CGame_SEOK::LateUpdate(void)
 
 void CGame_SEOK::Render(HDC hDC)
 {
+	BitBlt(hDC, 0, 0, WINCX, WINCY, m_hMemDC, 0, 0, SRCCOPY);
+
 	CLineMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 }
