@@ -13,7 +13,13 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release(void) override;
 
+	void Set_Click()
+	{
+		m_bClick = true;
+	}
+
 private:
 	GAMESCENE m_eButton;
+	bool	  m_bClick;
 };
 

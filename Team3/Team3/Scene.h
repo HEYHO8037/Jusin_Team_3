@@ -14,5 +14,9 @@ public:
 	virtual void	LateUpdate(void) PURE;
 	virtual void	Render(HDC hDC) PURE;
 	virtual void	Release(void) PURE;
+
+
+protected:
+	HDC m_hMemDC;
 };
 

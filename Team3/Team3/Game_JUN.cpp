@@ -48,6 +48,7 @@ void CGame_JUN::LateUpdate(void)
 
 void CGame_JUN::Render(HDC hDC)
 {
+	BitBlt(hDC, 0, 0, WINCX, WINCY, m_hMemDC, 0, 0, SRCCOPY);
 	//Ellipse(hDC, 100, 0, 700, 600);
 	CJUNLineMgr::Get_Instance()->Render(hDC);
 	

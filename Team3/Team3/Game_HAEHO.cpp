@@ -61,6 +61,8 @@ void CGame_HAEHO::LateUpdate(void)
 
 void CGame_HAEHO::Render(HDC hDC)
 {
+	BitBlt(hDC, 0, 0, WINCX, WINCY, m_hMemDC, 0, 0, SRCCOPY);
+
 	CObjMgr::Get_Instance()->Render(hDC);
 }
 

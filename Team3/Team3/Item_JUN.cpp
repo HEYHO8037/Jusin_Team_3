@@ -121,11 +121,12 @@ int CItem_JUN::Update(void)
 
 	//D3DXVec3TransformNormal(&m_vWorldDir, &m_vLocalDir, &m_tInfo.matWorld);
 
+	
 	//공전 하기 전 좌표를 가져오고, 그 이후에 연산
 	D3DXMatrixTranslation(&_matTrans 
 		, (m_vWorldPos[1].x + m_vWorldPos[0].x) / 2.f - 400.f
 		, (m_vWorldPos[0].y + m_vWorldPos[3].y) / 2.f - 300.f
-		, 0.f);
+		, 0.f); 
 	D3DXMatrixTranslation(&_matTransA, 400.f, 300.f, 0.f);
 	m_tInfo.matWorld = _matTrans * _matRotA * _matTransA;
 
@@ -138,9 +139,9 @@ int CItem_JUN::Update(void)
 
 void CItem_JUN::LateUpdate(void)
 {
-	if (m_vWorldTrans.x < 0.f || m_vWorldTrans.x > 800.f)
+	if (m_vWorldTrans.x < 50.f || m_vWorldTrans.x > 750.f)
 		m_bDead = true;
-	else if (m_vWorldTrans.y < 0.f || m_vWorldTrans.y > 600.f)
+	else if (m_vWorldTrans.y < 50.f || m_vWorldTrans.y > 550.f)
 		m_bDead = true;
 }
 
@@ -152,7 +153,7 @@ void CItem_JUN::Render(HDC hDC)
 	{
 		LineTo(hDC, m_vWorldPos[i % 4].x, m_vWorldPos[i % 4].y);
 	}
-	Ellipse(hDC, m_vWorldCollision.x - m_vWorldRange, m_vWorldCollision.y - m_vWorldRange, m_vWorldCollision.x + m_vWorldRange, m_vWorldCollision.y + m_vWorldRange);
+	//Ellipse(hDC, m_vWorldCollision.x - m_vWorldRange, m_vWorldCollision.y - m_vWorldRange, m_vWorldCollision.x + m_vWorldRange, m_vWorldCollision.y + m_vWorldRange);
 	
 }
 

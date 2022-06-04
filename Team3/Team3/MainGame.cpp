@@ -28,7 +28,7 @@ void CMainGame::Initialize(void)
 
 	hGroundDC = CBmpMgr_3::Get_Instance()->Find_Image(L"GROUND");
 
-#if(1)
+#if(0)
 	if (::AllocConsole() == TRUE)
 	{
 		FILE* nfp[3];
@@ -60,16 +60,11 @@ void CMainGame::LateUpdate(void)
 void CMainGame::Render(void)
 {
 	BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBackDC, 0, 0, SRCCOPY);
-
 	
-
-	Rectangle(hGroundDC, 0, 0, WINCX, WINCY);
-	CSceneMgr::Get_Instance()->Render(hGroundDC);
-
-	BitBlt(hBackDC, 0, 0, WINCX, WINCY, hGroundDC, 0, 0, SRCCOPY);
+	CSceneMgr::Get_Instance()->Render(hBackDC);
 }
 
 void CMainGame::Release(void)
 {
-	ReleaseDC(g_hWnd, m_hDC);	
+	ReleaseDC(g_hWnd, m_hDC);
 }
