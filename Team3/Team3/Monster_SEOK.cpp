@@ -5,6 +5,7 @@
 #include "ScrollMgr.h"
 #include "ObjMgr.h"
 #include "KeyMgr.h"
+#include "SceneMgr.h"
 #include "AbstractFactory.h"
 
 CMonster_SEOK::CMonster_SEOK()
@@ -44,21 +45,48 @@ void CMonster_SEOK::Initialize(void)
 	for (int i = 0; i < 4; ++i)
 		m_vOriginGunPoint[i] = m_vGunPoint[i];
 
+	m_vHpPoint1[0] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint1[1] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint1[2] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y + 3.f, 0.f };
+	m_vHpPoint1[3] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y + 3.f, 0.f };
+
+	for (int i = 0; i < 4; ++i)
+		m_vOriginHpPoint1[i] = m_vHpPoint1[i];
+
+	m_vHpPoint2[0] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint2[1] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint2[2] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y + 3.f, 0.f };
+	m_vHpPoint2[3] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y + 3.f, 0.f };
+
+	for (int i = 0; i < 4; ++i)
+		m_vOriginHpPoint2[i] = m_vHpPoint2[i];
+
+	m_vHpPoint3[0] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint3[1] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint3[2] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y + 3.f, 0.f };
+	m_vHpPoint3[3] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y + 3.f, 0.f };
+
+	for (int i = 0; i < 4; ++i)
+		m_vOriginHpPoint3[i] = m_vHpPoint3[i];
+
 	m_vBulletPoint = { 0.f,  0.f, 0.f };
 
 	m_fSpeed = 20.f;
 
 	m_fAngle = 1.57f;
 
-	m_fGunAngle = 0.f;
+	//m_fGunAngle = 0.f;
+	m_fGunAngle = 1.30899668f;
 
-	m_fGunSpeed = 20.f;
+	m_fGunSpeed = 30.f;
 
 	fCooltimeSec = GetTickCount();
 	fCooltimeSec2 = GetTickCount();
 
 	bAngledir = true;
 	bMovedir = true;
+
+	m_Hp = 3;
 }
 
 int CMonster_SEOK::Update(void)
@@ -98,6 +126,60 @@ int CMonster_SEOK::Update(void)
 		m_vGunPoint[i] -= { 1600.f, 400.f, 0.f };
 		D3DXVec3TransformCoord(&m_vGunPoint[i], &m_vGunPoint[i], &m_tInfo.matGunWorld);
 	}
+
+	D3DXMATRIX		matHPScale, matHPRotZ, matHPsTrans;
+
+	D3DXMatrixScaling(&matHPScale, 1.f, 1.f, 0.f);
+	D3DXMatrixRotationZ(&matHPRotZ, m_fAngle);
+	D3DXMatrixTranslation(&matHPsTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
+
+	m_tInfo.matHPWorld1 = matHPScale * matHPRotZ * matHPsTrans;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_vHpPoint1[i] = m_vOriginHpPoint1[i];
+
+		m_vHpPoint1[i] -= { 1590.f, 433.f, 0.f };
+		D3DXVec3TransformCoord(&m_vHpPoint1[i], &m_vHpPoint1[i], &m_tInfo.matHPWorld1);
+	}
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_vHpPoint2[i] = m_vOriginHpPoint2[i];
+
+		m_vHpPoint2[i] -= { 1580.f, 433.f, 0.f };
+		D3DXVec3TransformCoord(&m_vHpPoint2[i], &m_vHpPoint2[i], &m_tInfo.matHPWorld1);
+	}
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_vHpPoint3[i] = m_vOriginHpPoint1[i];
+
+		m_vHpPoint3[i] -= { 1570.f, 433.f, 0.f };
+		D3DXVec3TransformCoord(&m_vHpPoint3[i], &m_vHpPoint3[i], &m_tInfo.matHPWorld1);
+	}
+
+	if (m_tInfo.vPos.x<1400)
+	{
+		bMovedir = false;
+	}
+
+	if (m_tInfo.vPos.x>2000)
+	{
+		bMovedir = true;
+	}
+
+	if (m_fGunAngle > -0.0753598790f)
+	{
+		//-0.0753598790f
+		bAngledir = false;
+	}
+
+	if (m_fGunAngle < 1.30899668f)
+	{//1.30899668
+		bAngledir = true;
+	}
+
 
 	Key_Input();
 
@@ -144,6 +226,50 @@ void CMonster_SEOK::Render(HDC hDC)
 	hpen = (HPEN)SelectObject(hDC, hpenOld);
 	DeleteObject(hpen);
 
+	if (m_Hp == 3)
+	{
+		hpen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
+		MoveToEx(hDC, (int)m_vHpPoint1[0].x + iScrollX, (int)m_vHpPoint1[0].y + iScrollY, nullptr);
+		for (int i = 0; i < 4; ++i)
+		{
+			LineTo(hDC, (int)m_vHpPoint1[i].x + iScrollX, (int)m_vHpPoint1[i].y + iScrollY);
+
+		}
+		LineTo(hDC, m_vHpPoint1[0].x + iScrollX, m_vHpPoint1[0].y + iScrollY);
+		hpen = (HPEN)SelectObject(hDC, hpenOld);
+		DeleteObject(hpen);
+	}
+	if (m_Hp >= 2)
+	{
+		hpen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
+		MoveToEx(hDC, (int)m_vHpPoint2[0].x + iScrollX, (int)m_vHpPoint2[0].y + iScrollY, nullptr);
+		for (int i = 0; i < 4; ++i)
+		{
+			LineTo(hDC, (int)m_vHpPoint2[i].x + iScrollX, (int)m_vHpPoint2[i].y + iScrollY);
+
+		}
+		LineTo(hDC, m_vHpPoint2[0].x + iScrollX, m_vHpPoint2[0].y + iScrollY);
+		hpen = (HPEN)SelectObject(hDC, hpenOld);
+		DeleteObject(hpen);
+	}
+
+	if (m_Hp >= 1)
+	{
+		hpen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
+		MoveToEx(hDC, (int)m_vHpPoint3[0].x + iScrollX, (int)m_vHpPoint3[0].y + iScrollY, nullptr);
+		for (int i = 0; i < 4; ++i)
+		{
+			LineTo(hDC, (int)m_vHpPoint3[i].x + iScrollX, (int)m_vHpPoint3[i].y + iScrollY);
+
+		}
+		LineTo(hDC, m_vHpPoint3[0].x + iScrollX, m_vHpPoint3[0].y + iScrollY);
+		hpen = (HPEN)SelectObject(hDC, hpenOld);
+		DeleteObject(hpen);
+	}
+
 	hpen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
 	hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
 	Ellipse(hDC,
@@ -165,11 +291,16 @@ void CMonster_SEOK::Render(HDC hDC)
 
 void CMonster_SEOK::Release(void)
 {
+	CSceneMgr::Get_Instance()->Set_SceneID(GAME_MENU);
 }
 
 void CMonster_SEOK::Set_Damage(void)
 {
-	Set_Dead();
+	m_Hp -= 1;
+	if (m_Hp<=0)
+	{
+ 		Set_Dead();
+	}
 }
 
 void CMonster_SEOK::OffSet(void)
@@ -178,27 +309,19 @@ void CMonster_SEOK::OffSet(void)
 
 void CMonster_SEOK::Key_Input(void)
 {
-	if (fCooltimeSec + 500<GetTickCount())
+	if (fCooltimeSec + 2000<GetTickCount())
 	{
 		CObjMgr::Get_Instance()->Add_Object(OBJ_MONSTERBULLET, CAbstractFactory<CBullet_Seok>::Create(m_vBulletPoint, (m_fGunAngle - 1.57f), m_fGunSpeed));
 
 			if (bAngledir)
 			{
-				m_fGunAngle += D3DXToRadian(6.f);
-				if (m_fGunAngle > -0.0753598790f)
-				{
-					bAngledir = false;
-
-				}
+		//		m_fGunAngle += D3DXToRadian(6.f);
 			}
-			else 
+			else
 			{
-				m_fGunAngle -= D3DXToRadian(6.f);
-				if (m_fGunAngle < 1.30899668f)
-				{
-					bAngledir = true;
-				}
+			//	m_fGunAngle -= D3DXToRadian(6.f);
 			}
+			
 		fCooltimeSec = GetTickCount();
 	}
 	if (fCooltimeSec2 + 300<GetTickCount())
@@ -223,21 +346,6 @@ void CMonster_SEOK::Key_Input(void)
 			}
 		}
 		fCooltimeSec2 = GetTickCount();
-	}
-	if (GetAsyncKeyState('W'))
-	{
-		if (m_fGunAngle <1.30899668f)
-		{
-			m_fGunAngle += D3DXToRadian(3.f);
-		}
-	}
-
-	if (GetAsyncKeyState('S'))
-	{
-		if (m_fGunAngle > -0.0753598790f)
-		{
-			m_fGunAngle -= D3DXToRadian(3.f);
-		}
 	}
 
 	/*if (GetAsyncKeyState('A'))

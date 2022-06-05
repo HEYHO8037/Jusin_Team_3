@@ -95,7 +95,7 @@ void CObjMgr::Late_Update(void)
 	}
 
 	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_BULLET], m_ObjList[OBJ_MONSTER]);
-	//CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
+	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_MONSTERBULLET], m_ObjList[OBJ_PLAYER]);
 }
 
 template<typename T>

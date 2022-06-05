@@ -29,6 +29,18 @@ private:
 	D3DXVECTOR3			m_vOriginGunPoint[4];
 
 	D3DXVECTOR3			m_vBulletPoint;
+
+	D3DXVECTOR3			m_vPowerPoint[4];
+	D3DXVECTOR3			m_vOriginPowerPoint[4];
+
+	D3DXVECTOR3			m_vHpPoint1[4];
+	D3DXVECTOR3			m_vOriginHpPoint1[4];
+	D3DXVECTOR3			m_vHpPoint2[4];
+	D3DXVECTOR3			m_vOriginHpPoint2[4];
+	D3DXVECTOR3			m_vHpPoint3[4];
+	D3DXVECTOR3			m_vOriginHpPoint3[4];
+
+
 	float				m_fGunAngle = 0.f;
 	float				m_fGunSpeed ; ;
 

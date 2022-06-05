@@ -5,6 +5,7 @@
 #include "ScrollMgr.h"
 #include "ObjMgr.h"
 #include "KeyMgr.h"
+#include "SceneMgr.h"
 #include "AbstractFactory.h"
 
 CPlayer_Seok::CPlayer_Seok()
@@ -43,6 +44,39 @@ void CPlayer_Seok::Initialize(void)
 	for (int i = 0; i < 4; ++i)
 		m_vOriginGunPoint[i] = m_vGunPoint[i];
 
+	m_vPowerPoint[0] = { m_tInfo.vPos.x -30.f,  m_tInfo.vPos.y - 5.f, 0.f };
+	m_vPowerPoint[1] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y - 5.f, 0.f };
+	m_vPowerPoint[2] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y + 5.f, 0.f };
+	m_vPowerPoint[3] = { m_tInfo.vPos.x - 30.f,  m_tInfo.vPos.y + 5.f, 0.f };
+
+	for (int i = 0; i < 4; ++i)
+		m_vOriginPowerPoint[i] = m_vPowerPoint[i];
+
+	m_vHpPoint1[0] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint1[1] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint1[2] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y + 3.f, 0.f };
+	m_vHpPoint1[3] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y + 3.f, 0.f };
+
+	for (int i = 0; i < 4; ++i)
+		m_vOriginHpPoint1[i] = m_vHpPoint1[i];
+
+	m_vHpPoint2[0] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint2[1] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint2[2] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y + 3.f, 0.f };
+	m_vHpPoint2[3] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y + 3.f, 0.f };
+
+	for (int i = 0; i < 4; ++i)
+		m_vOriginHpPoint2[i] = m_vHpPoint2[i];
+
+	m_vHpPoint3[0] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint3[1] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y - 3.f, 0.f };
+	m_vHpPoint3[2] = { m_tInfo.vPos.x - 40.f,  m_tInfo.vPos.y + 3.f, 0.f };
+	m_vHpPoint3[3] = { m_tInfo.vPos.x - 35.f,  m_tInfo.vPos.y + 3.f, 0.f };
+
+	for (int i = 0; i < 4; ++i)
+		m_vOriginHpPoint3[i] = m_vHpPoint3[i];
+
+
 	m_vBulletPoint = { 0.f,  0.f, 0.f };
 
 	m_fSpeed = 5.f;
@@ -55,6 +89,8 @@ void CPlayer_Seok::Initialize(void)
 
 	fCooltimeSec = GetTickCount();
 	fGunPowerCooltimeSec = GetTickCount();
+
+    m_Hp = 3;
 
 }
 
@@ -96,10 +132,55 @@ int CPlayer_Seok::Update(void)
 		D3DXVec3TransformCoord(&m_vGunPoint[i], &m_vGunPoint[i], &m_tInfo.matGunWorld);
 	}
 
+	D3DXMATRIX		matPowerScale, matPowerRotZ, matPowersTrans;
 
+	D3DXMatrixScaling(&matPowerScale, 1.f, 1.f + m_fGunSpeed / 5, 0.f);
+	D3DXMatrixRotationZ(&matPowerRotZ, m_fAngle);
+	D3DXMatrixTranslation(&matPowersTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
+
+	m_tInfo.matPowerWorld = matPowerScale * matPowerRotZ * matPowersTrans;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_vPowerPoint[i] = m_vOriginPowerPoint[i];
+
+		m_vPowerPoint[i] -= { 200.f, 400.f, 0.f };
+		D3DXVec3TransformCoord(&m_vPowerPoint[i], &m_vPowerPoint[i], &m_tInfo.matPowerWorld);
+	}
+
+
+	D3DXMATRIX		matHPScale, matHPRotZ, matHPsTrans;
+
+	D3DXMatrixScaling(&matHPScale, 1.f, 1.f, 0.f);
+	D3DXMatrixRotationZ(&matHPRotZ, m_fAngle);
+	D3DXMatrixTranslation(&matHPsTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
+
+	m_tInfo.matHPWorld1 = matHPScale * matHPRotZ * matHPsTrans;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_vHpPoint1[i] = m_vOriginHpPoint1[i];
+
+		m_vHpPoint1[i] -= { 190.f, 367.f, 0.f };
+		D3DXVec3TransformCoord(&m_vHpPoint1[i], &m_vHpPoint1[i], &m_tInfo.matHPWorld1);
+	}
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_vHpPoint2[i] = m_vOriginHpPoint2[i];
+
+		m_vHpPoint2[i] -= { 180.f, 367.f, 0.f };
+		D3DXVec3TransformCoord(&m_vHpPoint2[i], &m_vHpPoint2[i], &m_tInfo.matHPWorld1);
+	}
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_vHpPoint3[i] = m_vOriginHpPoint1[i];
+
+		m_vHpPoint3[i] -= { 170.f, 367.f, 0.f };
+		D3DXVec3TransformCoord(&m_vHpPoint3[i], &m_vHpPoint3[i], &m_tInfo.matHPWorld1);
+	}
 	Key_Input();
-	
-	
 	
 	return 0;
 
@@ -118,7 +199,6 @@ void CPlayer_Seok::Render(HDC hDC)
 
 	HPEN hpen;
 	HPEN hpenOld;
-
 	hpen = CreatePen(PS_SOLID, 3, RGB(0, 0, 255));   // 선 스타일, 굵기, 색상
 	hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);   // 펜 선택
 	MoveToEx(hDC, (int)m_vPoint[0].x + iScrollX, (int)m_vPoint[0].y + iScrollY, nullptr);
@@ -143,6 +223,63 @@ void CPlayer_Seok::Render(HDC hDC)
 	hpen = (HPEN)SelectObject(hDC, hpenOld);
 	DeleteObject(hpen);
 
+	hpen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+	hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
+	MoveToEx(hDC, (int)m_vPowerPoint[0].x  + iScrollX, (int)m_vPowerPoint[0].y + iScrollY, nullptr);
+	for (int i = 0; i < 4; ++i)
+	{
+		LineTo(hDC, (int)m_vPowerPoint[i].x + iScrollX, (int)m_vPowerPoint[i].y + iScrollY);
+
+	}
+	LineTo(hDC, m_vPowerPoint[0].x  + iScrollX, m_vPowerPoint[0].y + iScrollY);
+
+	hpen = (HPEN)SelectObject(hDC, hpenOld);
+	DeleteObject(hpen);
+
+	if (m_Hp==3)
+	{
+		hpen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
+		MoveToEx(hDC, (int)m_vHpPoint1[0].x + iScrollX, (int)m_vHpPoint1[0].y + iScrollY, nullptr);
+		for (int i = 0; i < 4; ++i)
+		{
+			LineTo(hDC, (int)m_vHpPoint1[i].x + iScrollX, (int)m_vHpPoint1[i].y + iScrollY);
+
+		}
+		LineTo(hDC, m_vHpPoint1[0].x + iScrollX, m_vHpPoint1[0].y + iScrollY);
+		hpen = (HPEN)SelectObject(hDC, hpenOld);
+		DeleteObject(hpen);
+	}
+	if (m_Hp >= 2)
+	{
+		hpen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
+		MoveToEx(hDC, (int)m_vHpPoint2[0].x + iScrollX, (int)m_vHpPoint2[0].y + iScrollY, nullptr);
+		for (int i = 0; i < 4; ++i)
+		{
+			LineTo(hDC, (int)m_vHpPoint2[i].x + iScrollX, (int)m_vHpPoint2[i].y + iScrollY);
+
+		}
+		LineTo(hDC, m_vHpPoint2[0].x + iScrollX, m_vHpPoint2[0].y + iScrollY);
+		hpen = (HPEN)SelectObject(hDC, hpenOld);
+		DeleteObject(hpen);
+	}
+
+	if (m_Hp >= 1)
+	{
+		hpen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+		hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
+		MoveToEx(hDC, (int)m_vHpPoint3[0].x + iScrollX, (int)m_vHpPoint3[0].y + iScrollY, nullptr);
+		for (int i = 0; i < 4; ++i)
+		{
+			LineTo(hDC, (int)m_vHpPoint3[i].x + iScrollX, (int)m_vHpPoint3[i].y + iScrollY);
+
+		}
+		LineTo(hDC, m_vHpPoint3[0].x + iScrollX, m_vHpPoint3[0].y + iScrollY);
+		hpen = (HPEN)SelectObject(hDC, hpenOld);
+		DeleteObject(hpen);
+	}
+
 	hpen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
 	hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
 	Ellipse(hDC,
@@ -158,17 +295,25 @@ void CPlayer_Seok::Render(HDC hDC)
 	hpen = (HPEN)SelectObject(hDC, hpenOld);
 	DeleteObject(hpen);
 
-	m_vBulletPoint = { (m_vGunPoint[1].x  + m_vGunPoint[2].x ) / 2,(m_vGunPoint[1].y+ m_vGunPoint[2].y ) / 2, 0.f };//총알 발사 위치잡기
 
+	m_vBulletPoint = { (m_vGunPoint[1].x  + m_vGunPoint[2].x ) / 2,(m_vGunPoint[1].y+ m_vGunPoint[2].y ) / 2, 0.f };//총알 발사 위치잡기
+	
+	
 }
 
 void CPlayer_Seok::Release(void)
 {
-
+	//CSceneMgr::Get_Instance()->Scene_Change(GAME_MENU);
+	CSceneMgr::Get_Instance()->Set_SceneID(GAME_MENU);
 }
 
 void CPlayer_Seok::Set_Damage(void)
 {
+	m_Hp -= 1;
+	if (m_Hp <= 0)
+	{
+		Set_Dead();
+	}
 }
 
 void CPlayer_Seok::OffSet(void)
@@ -200,7 +345,7 @@ void CPlayer_Seok::Key_Input(void)
 		m_fAngle = fLineCol+1.57f;
 		m_fGunAngle = fLineCol;
 	}
-	if (GetAsyncKeyState('D'))
+	if (GetAsyncKeyState('D')&& m_tInfo.vPos.x<1270)
 	{
 		D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
 		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed;
@@ -208,17 +353,6 @@ void CPlayer_Seok::Key_Input(void)
 		m_fGunAngle = fLineCol;
 	}
 
-	if (GetAsyncKeyState('Q'))
-	{
-		m_fAngle -= D3DXToRadian(3.f);
-		m_fGunAngle -= D3DXToRadian(3.f);
-	}
-
-	if (GetAsyncKeyState('E'))
-	{
-		m_fAngle += D3DXToRadian(3.f);
-		m_fGunAngle += D3DXToRadian(3.f);
-	}
 	if (CKeyMgr::Get_Instance()->Key_Up(VK_SPACE))
 	{
 		if (fCooltimeSec+200<GetTickCount())
@@ -232,11 +366,11 @@ void CPlayer_Seok::Key_Input(void)
 	{
 		if (fGunPowerCooltimeSec + 100 < GetTickCount())
 		{
-			if (m_fGunSpeed<30)
+			if (m_fGunSpeed<20)
 			{
 				++m_fGunSpeed;
 			}
-			else if (m_fGunSpeed>=30)
+			else if (m_fGunSpeed>=20)
 			{
 				--m_fGunSpeed;
 			}

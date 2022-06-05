@@ -77,23 +77,23 @@ bool CLineMgr::Collision_VerticalLine(float & _fX, float & _fY, float * pY)
 		{
 			if (iter->Get_Info().tLPoint.fY > iter->Get_Info().tRPoint.fY)
 			{
-				if ((!(_fY <= iter->Get_Info().tLPoint.fY&&_fY  >= iter->Get_Info().tRPoint.fY))&&(_fY >=iter->Get_Info().tRPoint.fY))
+				if ((!(_fY <= iter->Get_Info().tLPoint.fY&&_fY  >= iter->Get_Info().tRPoint.fY))&&((_fY >=iter->Get_Info().tLPoint.fY)||(_fY >= iter->Get_Info().tRPoint.fY)))
 				{
 					pTarget = iter;
 				}
-				if (_fY  >= iter->Get_Info().tLPoint.fY)
+				if (_fY  >=( iter->Get_Info().tRPoint.fY+ iter->Get_Info().tLPoint.fY)/2)
 				{
 					pTarget = iter;
 				}
 
 			}
-			else if(iter->Get_Info().tLPoint.fY <= iter->Get_Info().tRPoint.fY)
+		 if(iter->Get_Info().tLPoint.fY <= iter->Get_Info().tRPoint.fY)
 			{
-				if ((!(_fY <= iter->Get_Info().tRPoint.fY&&_fY >= iter->Get_Info().tLPoint.fY)) && (_fY >= iter->Get_Info().tLPoint.fY))
+				if ((!(_fY <= iter->Get_Info().tRPoint.fY&&_fY >= iter->Get_Info().tLPoint.fY)) && ((_fY >= iter->Get_Info().tRPoint.fY)|| (_fY >= iter->Get_Info().tLPoint.fY)))
 				{
  					pTarget = iter;
 				}
-				if (_fY >= iter->Get_Info().tRPoint.fY)
+				if (_fY >= (iter->Get_Info().tRPoint.fY + iter->Get_Info().tLPoint.fY) / 2)
 				{
 					pTarget = iter;
 				}

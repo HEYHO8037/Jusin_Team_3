@@ -26,6 +26,8 @@ public:
 
 	void		Set_Speed(float _Speed) { m_fSpeed = _Speed; }
 
+	int		    Set_Hp(void) { return m_Hp; }
+
 	// Tetris Tile
 	void Set_DrawID(int _iID) { m_iDrawID = _iID; }
 	const int& Get_DrawID(void) const { return m_iDrawID; }
@@ -60,5 +62,6 @@ protected:
 	float		m_fAngle;
 	float		m_fSpeed;
 
+	int m_Hp;
 };
 

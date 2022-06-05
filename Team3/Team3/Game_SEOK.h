@@ -13,5 +13,9 @@ public:
 	virtual void LateUpdate(void) override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release(void) override;
+private:
+	int m_pHp;
+	int m_mHp;
+
 };
 
