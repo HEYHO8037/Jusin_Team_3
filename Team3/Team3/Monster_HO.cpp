@@ -102,9 +102,12 @@ int CMonster_HO::Update(void)
 		if (Tick - TickCount > 1000)
 		{
 			TickCount = GetTickCount();
-			CBullet_HO* pBullet = new CBullet_HO(m_vGunPoint.x, m_vGunPoint.y, m_tInfo.vDir, MONSTER_BULLET);
-			pBullet->Set_Target(CObjMgr::Get_Instance()->Get_Player());
-			CObjMgr::Get_Instance()->Add_Object(OBJ_BULLET, pBullet);
+			if (!CObjMgr::Get_Instance()->Get_ObjList(OBJ_PLAYER).empty())
+			{
+				CBullet_HO* pBullet = new CBullet_HO(m_vGunPoint.x, m_vGunPoint.y, m_tInfo.vDir, MONSTER_BULLET);
+				pBullet->Set_Target(CObjMgr::Get_Instance()->Get_Player());
+				CObjMgr::Get_Instance()->Add_Object(OBJ_BULLET, pBullet);
+			}
 		}
 	}
 
