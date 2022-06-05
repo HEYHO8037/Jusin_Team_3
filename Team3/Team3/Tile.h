@@ -11,6 +11,8 @@ public:
 
 public:
 	const int& Get_Option(void) { return m_iOption; }
+	bool Get_TMap(void) { return m_bTMap; }
+
 public:
 	void		Set_DrawID(int _iDrawID) { m_iDrawID = _iDrawID; }
 	void		Set_Option(int _iOption) { m_iOption = _iOption; }

@@ -38,6 +38,7 @@ void CPlayer_Ho::Initialize(void)
 
 
 	m_fSpeed = 5.f;
+	m_iHP = 3;
 
 }
 
@@ -107,6 +108,11 @@ int CPlayer_Ho::Update(void)
 	m_PovRaycast = m_vGunPoint - m_tInfo.vPos;
 
 	D3DXVec3Normalize(&m_PovRaycast, &m_PovRaycast);
+
+	if (m_iHP <= 0)
+	{
+		m_bDead = true;
+	}
 
 
 	return OBJ_NOEVENT;

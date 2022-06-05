@@ -165,7 +165,6 @@ void CGame_SON::Render(HDC hDC)
 
 	CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
-	// Á¡¼ö UI
 }
 
 void CGame_SON::Release(void)

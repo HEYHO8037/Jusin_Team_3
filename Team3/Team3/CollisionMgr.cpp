@@ -141,6 +141,7 @@ void CCollisionMgr::Collision_Bullet_Monster(list<CObj*> _Dest, list<CObj*> _Sou
 					MonsterPoint[2].y >= BulletPoint[2].y)
 				{
 					Sour->Set_Dead(true);
+					Dest->Set_Dead(true);
 				}
 			}
 		}
@@ -166,5 +167,31 @@ void CCollisionMgr::Collision_Wall_Bullet(list<CObj*> _Dest, list<CObj*> _Sour)
 			}
 		}
 	}
+}
+
+void CCollisionMgr::Collision_Bullet_Player(list<CObj*> _Dest, list<CObj*> _Sour)
+{
+	for (auto& Dest : _Dest)
+	{
+		D3DXVECTOR3* BulletPoint = dynamic_cast<CBullet_HO*>(Dest)->Get_Point();
+
+		if (dynamic_cast<CBullet_HO*>(Dest)->Get_Type() == MONSTER_BULLET)
+		{
+			for (auto& Sour : _Sour)
+			{
+				D3DXVECTOR3* PlayerPoint = dynamic_cast<CPlayer_Ho*>(Sour)->Get_Point();
+
+				if (PlayerPoint[0].x <= BulletPoint[0].x &&
+					PlayerPoint[1].x >= BulletPoint[1].x &&
+					PlayerPoint[0].y <= BulletPoint[0].y &&
+					PlayerPoint[2].y >= BulletPoint[2].y)
+				{
+					Dest->Set_Dead(true);
+					dynamic_cast<CPlayer_Ho*>(Sour)->Minus_HP();
+				}
+			}
+		}
+	}
+
 }
 

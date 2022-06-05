@@ -96,9 +96,6 @@ void CTileMgr::Update()
 
 void CTileMgr::LateUpdate()
 {
-	int iID = 0;
-	int iIDCheak = 1;
-	
 	for (int i = 0; i < TILEY; ++i)
 	{
 		for (int j = 0; j < TILEX; ++j)
@@ -106,57 +103,79 @@ void CTileMgr::LateUpdate()
 			if (nullptr != m_vecTile[i * TILEX + j])
 			{
 				m_vecTile[i * TILEX + j]->LateUpdate();
+			}
+		}
+	}
 
-				if (!m_StopDelete)
+	if (!m_StopDelete)
+	{
+		int iID = 0;
+		int iIDCheak = 1;
+	
+		for (int i = 0; i < TILEY; ++i)
+		{
+			for (int j = 0; j < TILEX; ++j)
+			{
+				if (nullptr != m_vecTile[i * TILEX + j])
 				{
-					iID = i * TILEX + j;
-
-					if (iID % TILEX > 0 && iID % TILEX < 11)
+					if (!dynamic_cast<CTile*>(m_vecTile[i * TILEX + j])->Get_TMap())
 					{
-						if (iID % TILEX == iIDCheak)
-						{
-							m_iArray[iIDCheak - 1] = iID;
-							++iIDCheak;
-						}
-						else if (10 < iIDCheak)
-						{
-							for (int i = 0; i < (iIDCheak - 1); ++i)
-							{
-								int iTemp = m_iArray[i];
-								Safe_Delete(m_vecTile[iTemp]);
-								m_vecTile[iTemp] = nullptr;
-								for (int j = 1; j < int(iTemp / TILEX); ++j)
-								{
-									if (nullptr != m_vecTile[iTemp - TILEX * j])
-									{
-										CObj* pTemp = m_vecTile[iTemp - TILEX * j];
-										m_vecTile[iTemp - TILEX * (j - 1)] = pTemp;
-										m_vecTile[iTemp - TILEX * j] = nullptr;
-										m_vecTile[iTemp - TILEX * (j - 1)]->Set_DrawID(iTemp - TILEX * (j - 1));
-									}
-									else
-									{
-									}
-								}
-							}
-							iIDCheak = 1;
-							++m_iPointCheak;
-							m_iPoint += 1000;
+						iID = i * TILEX + j;
 
-							if (10 <= m_iPointCheak)
-							{
-								m_iPoint += 5000;
-								m_iPointCheak = 0;
-							}
-						}
-						else
+						if (iID % TILEX > 0 && iID % TILEX < 11)
 						{
-							iIDCheak = 1;
+							if (iID % TILEX == iIDCheak)
+							{
+								m_iArray[iIDCheak - 1] = iID;
+
+								++iIDCheak;
+							}
+							else
+							{
+								iIDCheak = 1;
+								break;
+							}
+							std::cout << iIDCheak << std::endl;
 						}
 					}
 				}
-
 			}
+
+			if (10 < iIDCheak)
+			{
+				std::cout << iIDCheak << std::endl;
+
+				for (int i = 0; i < (iIDCheak - 1); ++i)
+				{
+					int iTemp = m_iArray[i];
+					Safe_Delete(m_vecTile[iTemp]);
+					m_vecTile[iTemp] = nullptr;
+
+					for (int j = 1; j < int(iTemp / TILEX); ++j)
+					{
+						if (nullptr != m_vecTile[iTemp - TILEX * j])
+						{
+							CObj* pTemp = m_vecTile[iTemp - TILEX * j];
+							m_vecTile[iTemp - TILEX * (j - 1)] = pTemp;
+							m_vecTile[iTemp - TILEX * j] = nullptr;
+							m_vecTile[iTemp - TILEX * (j - 1)]->Set_DrawID(iTemp - TILEX * (j - 1));
+						}
+						else
+						{
+						}
+					}
+				}
+				iIDCheak = 1;
+				++m_iPointCheak;
+				m_iPoint += 1000;
+
+				if (10 <= m_iPointCheak)
+				{
+					m_iPoint += 5000;
+					m_iPointCheak = 0;
+				}
+			}
+
 		}
 	}
 }
@@ -173,6 +192,11 @@ void CTileMgr::Render(HDC hDC)
 			}
 		}
 	}
+
+	// Á¡¼ö UI
+	TCHAR szBuff[32] = L"";
+	swprintf_s(szBuff, L"POINT : %d", m_iPoint);
+	TextOut(hDC, 600, 80, szBuff, lstrlen(szBuff));
 }
 
 void CTileMgr::Release()

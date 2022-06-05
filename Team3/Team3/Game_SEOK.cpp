@@ -5,7 +5,8 @@
 #include "ObjMgr.h"
 #include "LineMgr.h"
 #include "AbstractFactory.h"
-
+#include "SceneMgr.h"
+#include "KeyMgr.h"
 
 CGame_SEOK::CGame_SEOK()
 {
@@ -14,6 +15,7 @@ CGame_SEOK::CGame_SEOK()
 
 CGame_SEOK::~CGame_SEOK()
 {
+	Release();
 }
 
 void CGame_SEOK::Initialize(void)
@@ -43,7 +45,7 @@ void CGame_SEOK::Render(HDC hDC)
 
 void CGame_SEOK::Release(void)
 {
-	CLineMgr::Get_Instance()->Destroy_Instance();
-	CObjMgr::Destroy_Instance();
+ 	CLineMgr::Get_Instance()->Destroy_Instance();
+	CObjMgr::Get_Instance()->Destroy_Instance();
 
 }

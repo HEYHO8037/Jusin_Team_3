@@ -18,6 +18,6 @@ public:
 	static void		Collision_MonsterRayCast(D3DXVECTOR3 NormalVec, D3DXVECTOR3 vPos, list<CObj*> _Sour);
 	static void		Collision_Bullet_Monster(list<CObj*> _Dest, list<CObj*> _Sour);
 	static void		Collision_Wall_Bullet(list<CObj*> _Dest, list<CObj*> _Sour);
-
-	static bool     Check_Sphere_JUN(D3DXVECTOR3 PlayerVec, float _fPRange, D3DXVECTOR3 TrapVec, float _fTRange);
+	static bool   Check_Sphere_JUN(D3DXVECTOR3 PlayerVec, float _fPRange, D3DXVECTOR3 TrapVec, float _fTRange);
+	static void		Collision_Bullet_Player(list<CObj*> _Dest, list<CObj*> _Sour);
 };

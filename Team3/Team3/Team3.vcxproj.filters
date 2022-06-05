@@ -10,9 +10,6 @@
     <ClCompile Include="Player_Ho.cpp">
       <Filter>01. Obj\00. Player\02. Player_HAEHO</Filter>
     </ClCompile>
-    <ClCompile Include="Player_SON.cpp">
-      <Filter>01. Obj\00. Player\03. Player_SON</Filter>
-    </ClCompile>
     <ClCompile Include="Player_Seok.cpp">
       <Filter>01. Obj\00. Player\04. Player_SEOK</Filter>
     </ClCompile>
@@ -117,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="MyButton.cpp">
       <Filter>01. Obj\06. Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_SON.cpp">
+      <Filter>01. Obj\00. Player\03. Player_SON</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
