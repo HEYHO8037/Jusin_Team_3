@@ -181,10 +181,10 @@ void CItem_JUN::Render(HDC hDC)
 	{
 		LineTo(hDC, m_vWorldPos[i % 4].x, m_vWorldPos[i % 4].y);
 	}
-	Ellipse(hDC,  m_vWorldCollision.x - m_vWorldRange
+	/*Ellipse(hDC,  m_vWorldCollision.x - m_vWorldRange
 				, m_vWorldCollision.y - m_vWorldRange
 				, m_vWorldCollision.x + m_vWorldRange
-				, m_vWorldCollision.y + m_vWorldRange);
+				, m_vWorldCollision.y + m_vWorldRange);*/
 }
 
 void CItem_JUN::Release(void)
