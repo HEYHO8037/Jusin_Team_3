@@ -64,6 +64,22 @@ bool CCollisionMgr::Check_Sphere(CObj* pDest, CObj* pSour)
 	return fRadius > fDiagonal;
 }
 
+bool CCollisionMgr::Check_Sphere_JUN(D3DXVECTOR3 PlayerVec, float _fPRange, D3DXVECTOR3 TrapVec, float _fTRange)
+{
+	// abs : 절대값을 구해주는 함수
+	//float	fWidth = fabs(pSour->Get_Info().vPos.x - pDest->Get_Info().vPos.x);
+	//float	fHeight = fabs(pSour->Get_Info().vPos.y - pDest->Get_Info().vPos.y);
+	float	fWidth = fabs(PlayerVec.x - TrapVec.x);
+	float	fHeight = fabs(PlayerVec.y - TrapVec.y);
+
+	// sqrt : 루트를 씌워주는 함수
+	float	fDiagonal = sqrtf(fWidth * fWidth + fHeight * fHeight);
+
+	float	fRadius = (_fPRange + _fTRange);
+
+	return fRadius > fDiagonal;
+}
+
 void CCollisionMgr::Collision_Sphere(list<CObj*> _Dest, list<CObj*> _Sour)
 {
 	for (auto& Dest : _Dest)

@@ -47,6 +47,21 @@ public:
 		m_fObjAngle += _fObjAngle;
 	}
 
+	const float& Get_Range()
+	{
+		return m_vWorldRange;
+	}
+
+	D3DXVECTOR3& Get_ColPos()
+	{
+		return m_vColPos_World;
+	}
+
+	void Set_GameOver(const bool& _bGameOver)
+	{
+		m_bGameOver = _bGameOver;
+	}
+
 private:
 	D3DXVECTOR3 m_vBody[9];
 
@@ -62,5 +77,11 @@ private:
 
 	int m_iJump_Y;
 
+	D3DXVECTOR3 m_vColPos_World;
+	D3DXVECTOR3 m_vColPos_Local;
+
+	float m_vWorldRange;
+
+	bool m_bGameOver;
 };
 
