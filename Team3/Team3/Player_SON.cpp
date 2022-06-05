@@ -217,7 +217,7 @@ void CPlayer_SON::KeyInput(void)
 				&& (!CTileMgr::Get_Instance()->Get_Tile(m_iDrawID_1 + TILEX))
 				&& (!CTileMgr::Get_Instance()->Get_Tile(m_iDrawID_2 + TILEX))
 				&& (!CTileMgr::Get_Instance()->Get_Tile(m_iDrawID_3 + TILEX)))
-				if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))
+				if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
 				{
 					m_iDrawID += TILEX;
 				}
