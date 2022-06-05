@@ -16,6 +16,10 @@ typedef	struct tagInfo
 
 	D3DXMATRIX		matWorldP;//¼®±Õ¿ë
 	D3DXMATRIX		matGunWorld;//¼®±Õ¿ë
+	D3DXMATRIX		matPowerWorld;//¼®±Õ¿ë
+	D3DXMATRIX		matHPWorld1;//¼®±Õ¿ë
+	D3DXMATRIX		matHPWorld2;//¼®±Õ¿ë
+	D3DXMATRIX		matHPWorld3;//¼®±Õ¿ë
 
 }INFO;
 

@@ -79,7 +79,7 @@ void CBullet_Seok::Throw()
 void CBullet_Seok::Line_Collision(void)
 {
 
-	float		fY = 0.f;
+	float		fY = -500.f;
 
 	bool bLineCol = CLineMgr::Get_Instance()->Collision_VerticalLine(m_tInfo.vPos.x, m_tInfo.vPos.y, &fY);
 
