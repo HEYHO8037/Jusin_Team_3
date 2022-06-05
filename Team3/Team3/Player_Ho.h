@@ -19,6 +19,9 @@ public:
 	D3DXVECTOR3 Get_PovRayCast() { return m_PovRaycast; }
 	D3DXVECTOR3* Get_Point() { return m_vPoint; }
 
+public:
+	void Minus_HP() { m_iHP--; }
+
 private:
 	void Key_Input(void);
 
@@ -35,6 +38,8 @@ private:
 	D3DXVECTOR3			m_PovRaycast;
 
 	float				m_fGunAngle = 0.f;
+	
+	int					m_iHP;
 
 
 };
