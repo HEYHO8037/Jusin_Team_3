@@ -2,6 +2,8 @@
 #include "Player_JUN.h"
 
 #include "KeyMgr.h"
+
+#include "SceneMgr.h"
 /*
 그림 그리고, 플레이어는 회전 안해? 해?
 안하던데요
@@ -61,6 +63,10 @@ CPlayer_JUN::CPlayer_JUN()
 	m_iDistance = 120;
 
 	m_fObjAngle = 0.f;
+
+	m_vWorldRange = 60.f;
+
+	m_bGameOver = false;
 }
 
 
@@ -78,6 +84,12 @@ int CPlayer_JUN::Update(void)
 	{
 		return OBJ_DEAD;
 	}
+
+	if (m_bGameOver)
+	{
+		CSceneMgr::Get_Instance()->Set_SceneID(GAME_MENU);
+	}
+
 	Keyinput();
 
 	/*if (m_fObjAngle != 0.f)
@@ -94,22 +106,22 @@ int CPlayer_JUN::Update(void)
 		}
 	}*/
 
-	if (m_tInfo.vPos.x != 400 - 120 + m_iDistance)
+	if (m_tInfo.vPos.x != float(400 - 120 + m_iDistance))
 	{
-		if (m_tInfo.vPos.x > 400 - 120 + m_iDistance)
+		if (m_tInfo.vPos.x > float(400 - 120 + m_iDistance))
 		{
 			m_tInfo.vPos.x -= 18.f;
-			if (m_tInfo.vPos.x < 400 - 120 + m_iDistance)
+			if (m_tInfo.vPos.x < float(400 - 120 + m_iDistance))
 			{
-				m_tInfo.vPos.x = 400 - 120 + m_iDistance;
+				m_tInfo.vPos.x = float(400 - 120 + m_iDistance);
 			}
 		}
-		else if (m_tInfo.vPos.x < 400 - 120 + m_iDistance)
+		else if (m_tInfo.vPos.x < float(400 - 120 + m_iDistance))
 		{
 			m_tInfo.vPos.x += 18.f;
-			if (m_tInfo.vPos.x > 400 - 120 + m_iDistance)
+			if (m_tInfo.vPos.x > float(400 - 120 + m_iDistance))
 			{
-				m_tInfo.vPos.x = 400 - 120 + m_iDistance;
+				m_tInfo.vPos.x = float(400 - 120 + m_iDistance);
 			}
 		}
 	}
@@ -144,6 +156,8 @@ int CPlayer_JUN::Update(void)
 	// -120 ~ 120 : 240으로 두고 120빼면 된다
 	// 
 
+	m_vColPos_World = { m_vBody[8].x,m_vBody[8].y + 80.f ,0.f};
+
 	return OBJ_NOEVENT;
 }
 
@@ -167,6 +181,13 @@ void CPlayer_JUN::Render(HDC hDC)
 	LineTo(hDC, (int)m_vBody[7].x, (int)m_vBody[7].y);
 
 	Ellipse(hDC, m_vBody[8].x - 25.f, m_vBody[8].y - 25.f, m_vBody[8].x + 25.f, m_vBody[8].y + 25.f);
+
+	/*Ellipse(hDC
+		, LONG(m_vColPos_World.x - m_vWorldRange)
+		, LONG(m_vColPos_World.y - m_vWorldRange)
+		, LONG(m_vColPos_World.x + m_vWorldRange)
+		, LONG(m_vColPos_World.y + m_vWorldRange)
+	);*/
 }
 
 void CPlayer_JUN::Release(void)
@@ -209,4 +230,3 @@ void CPlayer_JUN::Keyinput(void)
 void CPlayer_JUN::Set_Damage(void)
 {
 }
-

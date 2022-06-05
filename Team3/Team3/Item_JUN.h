@@ -14,6 +14,17 @@ public:
 	virtual void Render(HDC hDC)	override;
 	virtual void Release(void)		override;
 
+	float Get_Range()
+	{
+		return m_vWorldRange;
+	}
+
+	D3DXVECTOR3 Get_ColPos()
+	{
+		return m_vWorldCollision;
+	}
+
+
 private:
 	D3DXVECTOR3		m_vWorldPos[4];
 	D3DXVECTOR3		m_vLocalPos[4];
@@ -23,8 +34,8 @@ private:
 	D3DXVECTOR3		m_vWorldCollision;
 	D3DXVECTOR3		m_vLocalCollision;
 
-	int		m_vWorldRange;
-	int		m_vLocalRange;
+	float		m_vWorldRange;
+	float		m_vLocalRange;
 
 	D3DXVECTOR3		m_vWorldDir;
 	D3DXVECTOR3		m_vLocalDir;

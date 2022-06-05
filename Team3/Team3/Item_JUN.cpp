@@ -4,6 +4,8 @@
 #include "Player_JUN.h"
 #include "ObjMgr.h"
 
+#include "CollisionMgr.h"
+
 //점점 커지면서 다가오고
 // 일단은 회전 없이 커지면서 다가오는 부분 만들고
 //회전 넣어서 공전도 같이 할 수 있도록!
@@ -121,14 +123,28 @@ int CItem_JUN::Update(void)
 
 	//D3DXVec3TransformNormal(&m_vWorldDir, &m_vLocalDir, &m_tInfo.matWorld);
 
+	float _fX_1 = m_vWorldPos[0].x;
+	float _fY_1 = m_vWorldPos[0].y;
+
+	float _fX_2 = m_vWorldPos[2].x;
+	float _fY_2 = m_vWorldPos[2].y;
+
+	float _fX_3 = m_vWorldPos[1].x;
+	float _fY_3 = m_vWorldPos[1].y;
+
+	float _fX_4 = m_vWorldPos[3].x;
+	float _fY_4 = m_vWorldPos[3].y;
+
+
+	float _fX = ((_fX_1*_fY_2 - _fY_1*_fX_2) * (_fX_3 - _fX_4) - (_fX_1 - _fX_2)*(_fX_3*_fY_4 - _fX_4*_fY_3)) / ((_fX_1 - _fX_2)*(_fY_3 - _fY_4) - (_fY_1 - _fY_2)*(_fX_3 - _fX_4));
+	float _fY = ((_fX_1*_fY_2 - _fY_1*_fX_2) * (_fY_3 - _fY_4) - (_fY_1 - _fY_2)*(_fX_3*_fY_4 - _fX_4*_fY_3)) / ((_fX_1 - _fX_2)*(_fY_3 - _fY_4) - (_fY_1 - _fY_2)*(_fX_3 - _fX_4));
 	
-	//공전 하기 전 좌표를 가져오고, 그 이후에 연산
-	D3DXMatrixTranslation(&_matTrans 
-		, (m_vWorldPos[1].x + m_vWorldPos[0].x) / 2.f - 400.f
-		, (m_vWorldPos[0].y + m_vWorldPos[3].y) / 2.f - 300.f
-		, 0.f); 
-	D3DXMatrixTranslation(&_matTransA, 400.f, 300.f, 0.f);
-	m_tInfo.matWorld = _matTrans * _matRotA * _matTransA;
+	D3DXMatrixTranslation(&_matTrans
+		, _fX
+		, _fY
+		, 0.f);
+
+	m_tInfo.matWorld = _matTrans;
 
 	D3DXVec3TransformCoord(&m_vWorldCollision, &m_vLocalCollision, &m_tInfo.matWorld);
 
@@ -141,8 +157,20 @@ void CItem_JUN::LateUpdate(void)
 {
 	if (m_vWorldTrans.x < 50.f || m_vWorldTrans.x > 750.f)
 		m_bDead = true;
-	else if (m_vWorldTrans.y < 50.f || m_vWorldTrans.y > 550.f)
+	else if (m_vWorldTrans.y < 50.f || m_vWorldTrans.y > 600.f)
 		m_bDead = true;
+
+	if (
+		CCollisionMgr::Check_Sphere_JUN(
+			static_cast<CPlayer_JUN*>(CObjMgr::Get_Instance()->Get_Player())->Get_ColPos(),
+			static_cast<CPlayer_JUN*>(CObjMgr::Get_Instance()->Get_Player())->Get_Range(),
+			m_vWorldCollision,
+			m_vWorldRange
+		)
+		)
+	{
+		static_cast<CPlayer_JUN*>(CObjMgr::Get_Instance()->Get_Player())->Set_GameOver(true);
+	}
 }
 
 void CItem_JUN::Render(HDC hDC)
@@ -153,8 +181,10 @@ void CItem_JUN::Render(HDC hDC)
 	{
 		LineTo(hDC, m_vWorldPos[i % 4].x, m_vWorldPos[i % 4].y);
 	}
-	//Ellipse(hDC, m_vWorldCollision.x - m_vWorldRange, m_vWorldCollision.y - m_vWorldRange, m_vWorldCollision.x + m_vWorldRange, m_vWorldCollision.y + m_vWorldRange);
-	
+	Ellipse(hDC,  m_vWorldCollision.x - m_vWorldRange
+				, m_vWorldCollision.y - m_vWorldRange
+				, m_vWorldCollision.x + m_vWorldRange
+				, m_vWorldCollision.y + m_vWorldRange);
 }
 
 void CItem_JUN::Release(void)

@@ -12,6 +12,8 @@
 
 #include "RandomMgr.h"
 
+#include "CollisionMgr.h"
+
 
 CGame_JUN::CGame_JUN()
 {
@@ -20,6 +22,7 @@ CGame_JUN::CGame_JUN()
 
 CGame_JUN::~CGame_JUN()
 {
+	Release();
 }
 
 void CGame_JUN::Initialize(void)
@@ -38,6 +41,8 @@ void CGame_JUN::Update(void)
 	CJUNLineMgr::Get_Instance()->Update();
 
 	CObjMgr::Get_Instance()->Update();
+
+
 }
 
 void CGame_JUN::LateUpdate(void)
@@ -63,4 +68,5 @@ void CGame_JUN::Render(HDC hDC)
 void CGame_JUN::Release(void)
 {
 	CObjMgr::Destroy_Instance();
+	CJUNLineMgr::Destroy();
 }

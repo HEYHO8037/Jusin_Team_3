@@ -16,5 +16,7 @@ public:
 
 private:
 	DWORD m_dwItemTime;
+
+
 };
 
