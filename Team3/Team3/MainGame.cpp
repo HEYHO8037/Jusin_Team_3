@@ -28,7 +28,7 @@ void CMainGame::Initialize(void)
 
 	hGroundDC = CBmpMgr_3::Get_Instance()->Find_Image(L"GROUND");
 
-#if(1)
+#if(0)
 	if (::AllocConsole() == TRUE)
 	{
 		FILE* nfp[3];

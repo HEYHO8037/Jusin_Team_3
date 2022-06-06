@@ -48,6 +48,7 @@ private:
 	double                   fCooltimeSec;
 	double                   fGunPowerCooltimeSec;
 
+	bool                     bMyturn = true;
 
 };
 

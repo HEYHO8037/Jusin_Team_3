@@ -49,4 +49,5 @@ private:
 	bool bAngledir;
 	bool bMovedir;
 
+	bool                     bMyturn = false;
 };

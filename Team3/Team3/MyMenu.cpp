@@ -209,7 +209,27 @@ void CMyMenu::Render(HDC hDC)
 
 		hpen = (HPEN)SelectObject(hDC, hpenOld);   // 기존의 펜 다시 선택
 		DeleteObject(hpen);   // 생성한 펜 삭제
-		
+	}
+
+	for (int i = 1; i < GAME_END; ++i)
+	{
+		switch (i)
+		{
+		case 1:
+			TextOut(hDC, 150.f * float(i) - 20, 490.f, L"RUN 3", 5);
+			break;
+		case 2:
+			TextOut(hDC, 150.f * float(i) - 30, 490.f, L"포트리스", 4);
+			break;
+		case 3:
+			TextOut(hDC, 150.f * float(i)-45 , 490.f, L"도어 킥커스2", 7);
+			break;
+		case 4:
+			TextOut(hDC, 150.f * float(i) - 30, 490.f, L"테트리스", 4);
+			break;
+		default:
+			break;
+		}
 	}
 }
 

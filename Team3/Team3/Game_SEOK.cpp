@@ -6,6 +6,7 @@
 #include "LineMgr.h"
 #include "AbstractFactory.h"
 #include "SceneMgr.h"
+#include "ScrollMgr.h"
 #include "KeyMgr.h"
 
 CGame_SEOK::CGame_SEOK()
@@ -28,6 +29,7 @@ void CGame_SEOK::Initialize(void)
 void CGame_SEOK::Update(void)
 {
 	CObjMgr::Get_Instance()->Update();
+	CScrollMgr::Get_Instance()->Scroll_Lock_Seok();
 }
 
 void CGame_SEOK::LateUpdate(void)

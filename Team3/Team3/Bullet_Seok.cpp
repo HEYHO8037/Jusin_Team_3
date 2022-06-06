@@ -45,13 +45,21 @@ void CBullet_Seok::LateUpdate(void)
 
 void CBullet_Seok::Render(HDC hDC)
 {
+	HPEN hpen;
+	HPEN hpenOld;
+
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+
+	hpen = CreatePen(PS_SOLID, 3, RGB(0, 0, 0));
+	hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
 	Ellipse(hDC,
 		int(m_tInfo.vPos.x+iScrollX+ - 10.f),
 		int(m_tInfo.vPos.y + iScrollY - 10.f),
 		int(m_tInfo.vPos.x + iScrollX + 10.f),
 		int(m_tInfo.vPos.y + iScrollY +10.f));
+	hpen = (HPEN)SelectObject(hDC, hpenOld);
+	DeleteObject(hpen);
 }
 
 void CBullet_Seok::Release(void)

@@ -27,3 +27,11 @@ void CScrollMgr::Scroll_Lock(void)
 	if (WINCY - TILECY * TILEY > m_fScrollY)
 		m_fScrollY = WINCY - TILECY * TILEY;
 }
+
+void CScrollMgr::Scroll_Lock_Seok(void)
+{
+	if (0.f < m_fScrollX)
+		m_fScrollX = 0.f;
+	 if (-1580.f > m_fScrollX)
+		m_fScrollX = -1580.f;
+}

@@ -100,6 +100,7 @@ int CPlayer_Seok::Update(void)
 	{
 		return OBJ_DEAD;
 	}
+
 	D3DXMATRIX		matScaleP, matRotZP, matTransP;
 
 	D3DXMatrixScaling(&matScaleP, 1.f, 1.f, 0.f);
@@ -180,7 +181,9 @@ int CPlayer_Seok::Update(void)
 		m_vHpPoint3[i] -= { 170.f, 367.f, 0.f };
 		D3DXVec3TransformCoord(&m_vHpPoint3[i], &m_vHpPoint3[i], &m_tInfo.matHPWorld1);
 	}
-	Key_Input();
+	
+	if(bMyturn==true)
+		Key_Input();
 	
 	return 0;
 
@@ -208,6 +211,7 @@ void CPlayer_Seok::Render(HDC hDC)
 
 	}
 	LineTo(hDC, m_vPoint[0].x + iScrollX, m_vPoint[0].y + iScrollY);
+
 	hpen = (HPEN)SelectObject(hDC, hpenOld);   // 기존의 펜 다시 선택
 	DeleteObject(hpen);   // 생성한 펜 삭제
 
